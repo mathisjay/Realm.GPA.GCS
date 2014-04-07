@@ -4,12 +4,36 @@ using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Web.Client.ClientResourceManagement;
 using System;
 using System.Web.UI.WebControls;
+using Realm.GPA.GCS.DAL;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace Realm.GPA.GCS
 {
     public partial class View : PortalModuleBase, DotNetNuke.Entities.Modules.IActionable
     {
-        
+        DataContext dc = new DataContext();
+
+        public int _selectedRegion
+        {
+            get
+            {
+                if (ViewState["_selectedRegion"] != null)
+                {
+                    return int.Parse(ViewState["_selectedRegion"].ToString());
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            set
+            {
+                ViewState["_selectedRegion"] = value;
+            }
+        }
+
         public DotNetNuke.Entities.Modules.Actions.ModuleActionCollection ModuleActions
         {
             get
@@ -17,7 +41,11 @@ namespace Realm.GPA.GCS
                 ModuleActionCollection Actions = new ModuleActionCollection();
                 if (IsEditable)
                 {
-                    //Actions.Add(GetNextActionID(), "Panels Settings", ModuleActionType.AddContent, "", "", EditUrl("Config"), false, DotNetNuke.Security.SecurityAccessLevel.Edit, true, false);                    
+                    Actions.Add(GetNextActionID(), "Edit Regions", ModuleActionType.AddContent, "", "", EditUrl("ListRegions"), false, DotNetNuke.Security.SecurityAccessLevel.Edit, true, false);
+                    Actions.Add(GetNextActionID(), "Edit Ports", ModuleActionType.AddContent, "", "", EditUrl("ListPorts"), false, DotNetNuke.Security.SecurityAccessLevel.Edit, true, false);
+                    Actions.Add(GetNextActionID(), "Edit US Cities", ModuleActionType.AddContent, "", "", EditUrl("ListUSCities"), false, DotNetNuke.Security.SecurityAccessLevel.Edit, true, false);
+                    Actions.Add(GetNextActionID(), "Edit Services", ModuleActionType.AddContent, "", "", EditUrl("ListServices"), false, DotNetNuke.Security.SecurityAccessLevel.Edit, true, false);
+                    Actions.Add(GetNextActionID(), "Edit Carriers", ModuleActionType.AddContent, "", "", EditUrl("ListCarriers"), false, DotNetNuke.Security.SecurityAccessLevel.Edit, true, false);
                 }
                 return Actions;
             }
@@ -29,8 +57,14 @@ namespace Realm.GPA.GCS
             {
                 IncludeStyleSheets();
                 IncludeScripts();
-                LoadData();
-                LoadAreas();
+
+                if (!Page.IsPostBack)
+                {
+                    LoadData();
+                    LoadRegionHotSpots();
+                    LoadRegionPorts(null);
+                    LoadUSCities();
+                }
             }
             catch (Exception exc)
             {
@@ -40,9 +74,9 @@ namespace Realm.GPA.GCS
 
         private void LoadData()
         {
-            
+
         }
-        
+
         private void IncludeStyleSheets()
         {
             try
@@ -59,9 +93,9 @@ namespace Realm.GPA.GCS
         private void IncludeScripts()
         {
             try
-            {                
+            {
                 //JS
-                ClientResourceManager.RegisterScript(this.Page, this.TemplateSourceDirectory + "/js/jquery.imagemapster.min.js");
+                ClientResourceManager.RegisterScript(this.Page, this.TemplateSourceDirectory + "/js/jquery.imagemapster.js");
             }
             catch (Exception exc)
             {
@@ -69,53 +103,119 @@ namespace Realm.GPA.GCS
             }
         }
 
-        private void StartScript()
+        protected void LoadRegionHotSpots()
         {
-            //StringBuilder sb = new StringBuilder();
+            try
+            {
+                List<Realm_GPA_GCS_Region> list = dc.Realm_GPA_GCS_Regions.ToList();
 
-            //sb.Append("<script type='text/javascript'>");
-            //sb.Append("$(document).ready(function () {");
-            //sb.Append("$('#" + royalSlider.ClientID + "').royalSlider(");
+                foreach (Realm_GPA_GCS_Region item in list)
+                {
+                    CircleHotSpot hs = new CircleHotSpot();
+                    hs.X = item.x;
+                    hs.Y = item.y;
 
-            //if (Settings.Contains("options"))
-            //{
-            //    sb.Append(Settings["options"].ToString());
-            //}
+                    hs.Radius = item.radius;
+                    hs.AlternateText = item.name;
+                    hs.PostBackValue = item.id.ToString();
 
-            //sb.Append(");");
-            //sb.Append("});");
-            //sb.Append("</script>");
+                    hs.HotSpotMode = HotSpotMode.PostBack;
 
-            //litScript.Text = sb.ToString();
+                    imWorld.HotSpots.Add(hs);
+                }
+
+            }
+            catch (Exception exc)
+            {
+                Exceptions.ProcessModuleLoadException(this, exc);
+            }
+        }
+
+        private void AddSelectRegionScript(string key)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            if (!string.IsNullOrEmpty(key))
+            {
+                sb.Append("<script>");
+                sb.Append("$(function () {");
+                sb.Append("$('#imWorld').mapster('set',true, '" + key + "');");
+                sb.Append("});");
+                sb.Append("</script>");
+            }
+
+            litScript.Text = sb.ToString();
         }
 
         protected void imWorld_Click(object sender, System.Web.UI.WebControls.ImageMapEventArgs e)
         {
-
-            string x = e.PostBackValue;
+            _selectedRegion = int.Parse(e.PostBackValue);
+            Realm_GPA_GCS_Region region = dc.Realm_GPA_GCS_Regions.Where(i => i.id == _selectedRegion && i.domestic == false).FirstOrDefault();
+            if (region != null)
+            {
+                AddSelectRegionScript(region.name);
+            }
+            else
+            {
+                AddSelectRegionScript(string.Empty);
+            }
+            LoadRegionPorts(region);
         }
 
-        protected void LoadAreas()
+
+
+        protected void LoadRegionPorts(Realm_GPA_GCS_Region region)
         {
             try
             {
-                for (int x = 1; x < 5; x++)
+                if (region != null)
                 {
-                    CircleHotSpot hs = new CircleHotSpot();
-                    hs.HotSpotMode = HotSpotMode.PostBack;
-                    hs.Radius = x * 10;
-                    hs.X = x * 10;
-                    hs.Y = x * 10;
-                    hs.AlternateText = (x * 100).ToString();
-                    hs.PostBackValue = x.ToString();
+                    ddlForeignPort.DataSource = region.Realm_GPA_GCS_Ports.OrderBy(i => i.name);
+                    ddlForeignPort.DataTextField = "name";
+                    ddlForeignPort.DataValueField = "id";
+                    ddlForeignPort.DataBind();
 
-                    imWorld.HotSpots.Add(hs);
+                    ddlForeignPort.Items.Insert(0, new ListItem("Select a port within " + region.name, string.Empty));
+                    ddlForeignPort.Enabled = true;
                 }
-                
+                else
+                {
+                    ddlForeignPort.Enabled = false;
+                    ddlForeignPort.Items.Clear();
+                    ddlForeignPort.Items.Add(new ListItem("Select a world region", string.Empty));
+                    ddlForeignPort.Enabled = false;
+                }
             }
             catch (Exception exc)
             {
                 Exceptions.ProcessModuleLoadException(this, exc);
+            }
+        }
+
+        private void LoadUSCities()
+        {
+            try
+            {
+                List<Realm_GPA_GCS_US_City> list = dc.Realm_GPA_GCS_US_Cities.OrderBy(i => i.name).ToList();
+
+                ddlDomesticCity.DataSource = list;
+                ddlDomesticCity.DataTextField = "name";
+                ddlDomesticCity.DataValueField = "id";
+                ddlDomesticCity.DataBind();
+
+                ddlDomesticCity.Items.Insert(0, new ListItem("Select a U.S. City", string.Empty));
+            }
+            catch (Exception exc)
+            {
+                Exceptions.ProcessModuleLoadException(this, exc);
+            }
+        }
+
+        protected void lbSelect_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(ddlForeignPort.SelectedValue) && !string.IsNullOrEmpty(ddlDomesticCity.SelectedValue))
+            { 
+
             }
         }
 

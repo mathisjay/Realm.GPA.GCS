@@ -2700,7 +2700,7 @@ A jQuery plugin to enhance image maps.
         if (!m.hasCanvas()) {
             this.blur();
         }
-        e.preventDefault();
+        //e.preventDefault();
     }
 
     /**

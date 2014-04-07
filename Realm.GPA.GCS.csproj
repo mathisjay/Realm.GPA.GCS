@@ -32,7 +32,8 @@
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\bin\Realm.GPA.GCS.xml</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -58,6 +59,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -70,20 +72,95 @@
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Mobile" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="Telerik.Web.Design, Version=2013.2.717.35, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Web.Design, Version=2013.2.717.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Telerik.Web.Design.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Web.UI, Version=2013.2.717.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Web.UI, Version=2013.3.1114.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Telerik.Web.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Web.UI.Skins, Version=2013.2.717.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Web.UI.Skins, Version=2013.3.1114.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Telerik.Web.UI.Skins.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\AdminEditCarrier.ascx.cs">
+      <DependentUpon>AdminEditCarrier.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminEditCarrier.ascx.designer.cs">
+      <DependentUpon>AdminEditCarrier.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminEditPort.ascx.cs">
+      <DependentUpon>AdminEditPort.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminEditPort.ascx.designer.cs">
+      <DependentUpon>AdminEditPort.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminEditService.ascx.cs">
+      <DependentUpon>AdminEditService.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminEditService.ascx.designer.cs">
+      <DependentUpon>AdminEditService.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminListCarriers.ascx.cs">
+      <DependentUpon>AdminListCarriers.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminListCarriers.ascx.designer.cs">
+      <DependentUpon>AdminListCarriers.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminListPorts.ascx.cs">
+      <DependentUpon>AdminListPorts.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminListPorts.ascx.designer.cs">
+      <DependentUpon>AdminListPorts.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminListServices.ascx.cs">
+      <DependentUpon>AdminListServices.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminListServices.ascx.designer.cs">
+      <DependentUpon>AdminListServices.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminListRegions.ascx.cs">
+      <DependentUpon>AdminListRegions.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminListRegions.ascx.designer.cs">
+      <DependentUpon>AdminListRegions.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminEditRegion.ascx.cs">
+      <DependentUpon>AdminEditRegion.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminEditRegion.ascx.designer.cs">
+      <DependentUpon>AdminEditRegion.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminListUSCity.ascx.cs">
+      <DependentUpon>AdminListUSCity.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminListUSCity.ascx.designer.cs">
+      <DependentUpon>AdminListUSCity.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminEditUSCity.ascx.cs">
+      <DependentUpon>AdminEditUSCity.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminEditUSCity.ascx.designer.cs">
+      <DependentUpon>AdminEditUSCity.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Realm.GPA.GCS.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Realm.GPA.GCS.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View.ascx.cs">
       <DependentUpon>View.ascx</DependentUpon>
@@ -94,11 +171,42 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="img\world.png" />
+    <Content Include="Admin\AdminEditCarrier.ascx" />
+    <Content Include="Admin\AdminEditPort.ascx" />
+    <Content Include="Admin\AdminEditService.ascx" />
+    <Content Include="Admin\AdminListCarriers.ascx" />
+    <Content Include="Admin\AdminListPorts.ascx" />
+    <Content Include="Admin\AdminListServices.ascx" />
+    <Content Include="Admin\AdminListRegions.ascx" />
+    <Content Include="Admin\AdminEditRegion.ascx" />
+    <Content Include="Admin\AdminListUSCity.ascx" />
+    <Content Include="Admin\AdminEditUSCity.ascx" />
+    <Content Include="DAL\Install.SqlDataProvider.sql" />
+    <Content Include="img\document.png" />
+    <Content Include="img\image.png" />
+    <Content Include="maps\aae1.jpg" />
+    <Content Include="maps\aue.jpg" />
+    <Content Include="maps\awe1.jpg" />
+    <Content Include="maps\world.png" />
     <Content Include="js\jquery.imagemapster.js" />
     <Content Include="js\jquery.imagemapster.min.js" />
     <Content Include="module.css" />
     <Content Include="View.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DAL\Realm.GPA.GCS.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Realm.GPA.GCS.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DAL\Realm.GPA.GCS.dbml.layout">
+      <DependentUpon>Realm.GPA.GCS.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

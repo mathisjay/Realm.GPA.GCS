@@ -10,87 +10,87 @@
 namespace Realm.GPA.GCS {
     
     
-    public partial class View {
+    public partial class AdminEditCarrier {
         
         /// <summary>
-        /// rapMap control.
+        /// valSummary control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadAjaxPanel rapMap;
+        protected global::System.Web.UI.WebControls.ValidationSummary valSummary;
         
         /// <summary>
-        /// lblWorldMap control.
+        /// lblName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblWorldMap;
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblName;
         
         /// <summary>
-        /// imWorld control.
+        /// txtName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageMap imWorld;
+        protected global::System.Web.UI.WebControls.TextBox txtName;
         
         /// <summary>
-        /// lblForeignPort control.
+        /// valName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblForeignPort;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valName;
         
         /// <summary>
-        /// ddlForeignPort control.
+        /// lblWebsiteURL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlForeignPort;
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblWebsiteURL;
         
         /// <summary>
-        /// lblDomesticcCity control.
+        /// txtWebsiteURL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDomesticcCity;
+        protected global::System.Web.UI.WebControls.TextBox txtWebsiteURL;
         
         /// <summary>
-        /// ddlDomesticCity control.
+        /// lbSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDomesticCity;
+        protected global::System.Web.UI.WebControls.LinkButton lbSave;
         
         /// <summary>
-        /// lbSelect control.
+        /// lbDelete control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbSelect;
+        protected global::System.Web.UI.WebControls.LinkButton lbDelete;
         
         /// <summary>
-        /// litScript control.
+        /// hypReturn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litScript;
+        protected global::System.Web.UI.WebControls.HyperLink hypReturn;
     }
 }

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 14.625" name="Realm.GPA">
+  <DataContextMoniker Name="/DataContext" />
+  <nestedChildShapes>
+    <classShape Id="055997ac-0797-4701-af40-03b8c0b1a38d" absoluteBounds="0.75, 13, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/DataContext/Realm_GPA_GCS_Carrier" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3bade35b-0552-47d3-aec0-55bcad245f53" absoluteBounds="0.765, 13.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="15f8eb70-b98e-44ed-b339-2876070e1b93" absoluteBounds="0.75, 7.375, 2, 1.3862939453124996">
+      <DataClassMoniker Name="/DataContext/Realm_GPA_GCS_Port" />
+      <nestedChildShapes>
+        <elementListCompartment Id="001261e3-743e-4fe4-a10c-c550de7781cb" absoluteBounds="0.765, 7.8350000000000009, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6bb3dfb0-dfda-4b99-bac6-c6cf6b9500a8" absoluteBounds="1.5, 10, 2, 1.9631982421874987">
+      <DataClassMoniker Name="/DataContext/Realm_GPA_GCS_Region" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cea59d1b-e64b-40b5-933f-4023ee0413bb" absoluteBounds="1.5150000000000001, 10.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8d2bb89c-bb98-4d59-ac66-64e9fe2a426a" absoluteBounds="3.5, 4, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/DataContext/Realm_GPA_GCS_Services_Carrier" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c094f9d5-824a-445d-bd18-2a1141b02f90" absoluteBounds="3.515, 4.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.125 : 10); (2.125 : 8.7612939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DataContext/Realm_GPA_GCS_Region/Realm_GPA_GCS_Region_Realm_GPA_GCS_Port" />
+      <nodes>
+        <classShapeMoniker Id="6bb3dfb0-dfda-4b99-bac6-c6cf6b9500a8" />
+        <classShapeMoniker Id="15f8eb70-b98e-44ed-b339-2876070e1b93" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 13.6931469726562); (3.625 : 13.6931469726562); (3.625 : 5.3862939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DataContext/Realm_GPA_GCS_Carrier/Realm_GPA_GCS_Carrier_Realm_GPA_GCS_Services_Carrier" />
+      <nodes>
+        <classShapeMoniker Id="055997ac-0797-4701-af40-03b8c0b1a38d" />
+        <classShapeMoniker Id="8d2bb89c-bb98-4d59-ac66-64e9fe2a426a" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="9f8bff62-a11b-4c76-a850-33ce40948f2f" absoluteBounds="3.75, 6.375, 2, 1.9631982421874987">
+      <DataClassMoniker Name="/DataContext/Realm_GPA_GCS_US_City" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fcea245f-427f-405e-9c7b-d50e39f6d413" absoluteBounds="3.7650000000000006, 6.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2efdb2b1-fdd6-4b9a-aaf6-925ec499a2a8" absoluteBounds="3.5, 0.75, 2, 1.7708968098958327">
+      <DataClassMoniker Name="/DataContext/Realm_GPA_GCS_Services_Port" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fa3e84a5-77eb-4bd5-9578-b18cd099b341" absoluteBounds="3.5150000000000006, 1.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 7.375); (3.125 : 7); (3.125 : 1.63544840494792); (3.5 : 1.63544840494792)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DataContext/Realm_GPA_GCS_Port/Realm_GPA_GCS_Port_Realm_GPA_GCS_Services_Port" />
+      <nodes>
+        <classShapeMoniker Id="15f8eb70-b98e-44ed-b339-2876070e1b93" />
+        <classShapeMoniker Id="2efdb2b1-fdd6-4b9a-aaf6-925ec499a2a8" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="094cf0c6-49e4-4254-b7ee-c7c5607efb2b" absoluteBounds="0.75, 3.5, 2, 2.3478011067708331">
+      <DataClassMoniker Name="/DataContext/Realm_GPA_GCS_Service" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c0f7052e-0556-440e-b68b-ff639723f5b5" absoluteBounds="0.76500000000000057, 3.96, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 4.69314697265625); (3.04166666666667 : 4.69314697265625 : JumpStart); (3.20833333333333 : 4.69314697265625 : JumpEnd); (3.5 : 4.69314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DataContext/Realm_GPA_GCS_Service/Realm_GPA_GCS_Service_Realm_GPA_GCS_Services_Carrier" />
+      <nodes>
+        <classShapeMoniker Id="094cf0c6-49e4-4254-b7ee-c7c5607efb2b" />
+        <classShapeMoniker Id="8d2bb89c-bb98-4d59-ac66-64e9fe2a426a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.75 : 3.5); (1.75 : 2.10942510742187); (3.04166666666667 : 2.10942510742187 : JumpStart); (3.20833333333333 : 2.10942510742187 : JumpEnd); (3.5 : 2.10942510742187)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DataContext/Realm_GPA_GCS_Service/Realm_GPA_GCS_Service_Realm_GPA_GCS_Services_Port" />
+      <nodes>
+        <classShapeMoniker Id="094cf0c6-49e4-4254-b7ee-c7c5607efb2b" />
+        <classShapeMoniker Id="2efdb2b1-fdd6-4b9a-aaf6-925ec499a2a8" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

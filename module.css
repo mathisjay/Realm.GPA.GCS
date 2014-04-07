@@ -1,4 +1,4 @@
-﻿#divMap {
+﻿/*#divMap {
     width: 800px;
     height: 370px;
     transition: all 1s 0s;
@@ -15,4 +15,25 @@
         -ms-transform: scale(1.5);
         -o-transform: scale(1.5);
         transform: scale(1.5);
+    }*/
+
+.imageManager, .documentManager {
+    display: inline-block;
+    text-indent: -9999px;
+    width: 24px;
+    height: 24px;
+    border: 1px solid #ccc;
+}
+
+    .imageManager:hover, .documentManager:hover {
+        cursor: pointer;
+        background-color: #ccc;
     }
+
+.imageManager {
+    background: url(img/image.png) 50% 50% no-repeat;
+}
+
+.documentManager {
+    background: url(img/document.png) 50% 50% no-repeat;
+}

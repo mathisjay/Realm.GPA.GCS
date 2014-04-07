@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DNN7" EntityNamespace="Realm.GPA.GCS.DAL" ContextNamespace="Realm.GPA.GCS.DAL" Class="DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=JAY-PC;Initial Catalog=DNN7;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="SiteSqlServer" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.[Realm.GPA.GCS.Carriers]" Member="Realm_GPA_GCS_Carriers">
+    <Type Name="Realm_GPA_GCS_Carrier">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="website_url" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Association Name="Realm_GPA_GCS_Carrier_Realm_GPA_GCS_Services_Carrier" Member="Realm_GPA_GCS_Services_Carriers" ThisKey="id" OtherKey="carrier_id" Type="Realm_GPA_GCS_Services_Carrier" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Realm.GPA.GCS.Ports]" Member="Realm_GPA_GCS_Ports">
+    <Type Name="Realm_GPA_GCS_Port">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="region_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Realm_GPA_GCS_Port_Realm_GPA_GCS_Services_Port" Member="Realm_GPA_GCS_Services_Ports" ThisKey="id" OtherKey="port_id" Type="Realm_GPA_GCS_Services_Port" />
+      <Association Name="Realm_GPA_GCS_Region_Realm_GPA_GCS_Port" Member="Realm_GPA_GCS_Region" ThisKey="region_id" OtherKey="id" Type="Realm_GPA_GCS_Region" IsForeignKey="true" DeleteRule="SET NULL" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Realm.GPA.GCS.Regions]" Member="Realm_GPA_GCS_Regions">
+    <Type Name="Realm_GPA_GCS_Region">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="x" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="y" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="radius" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="domestic" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Realm_GPA_GCS_Region_Realm_GPA_GCS_Port" Member="Realm_GPA_GCS_Ports" ThisKey="id" OtherKey="region_id" Type="Realm_GPA_GCS_Port" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Realm.GPA.GCS.Services_Carriers]" Member="Realm_GPA_GCS_Services_Carriers">
+    <Type Name="Realm_GPA_GCS_Services_Carrier">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="service_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="carrier_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Realm_GPA_GCS_Carrier_Realm_GPA_GCS_Services_Carrier" Member="Realm_GPA_GCS_Carrier" ThisKey="carrier_id" OtherKey="id" Type="Realm_GPA_GCS_Carrier" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Realm_GPA_GCS_Service_Realm_GPA_GCS_Services_Carrier" Member="Realm_GPA_GCS_Service" ThisKey="service_id" OtherKey="id" Type="Realm_GPA_GCS_Service" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Realm.GPA.GCS.US_Cities]" Member="Realm_GPA_GCS_US_Cities">
+    <Type Name="Realm_GPA_GCS_US_City">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="rail_time_to" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="rail_time_from" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="truck_time_to" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="truck_time_from" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Realm.GPA.GCS.Services_Ports]" Member="Realm_GPA_GCS_Services_Ports">
+    <Type Name="Realm_GPA_GCS_Services_Port">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="service_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="port_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="days_to" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="days_from" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Realm_GPA_GCS_Port_Realm_GPA_GCS_Services_Port" Member="Realm_GPA_GCS_Port" ThisKey="port_id" OtherKey="id" Type="Realm_GPA_GCS_Port" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Realm_GPA_GCS_Service_Realm_GPA_GCS_Services_Port" Member="Realm_GPA_GCS_Service" ThisKey="service_id" OtherKey="id" Type="Realm_GPA_GCS_Service" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Realm.GPA.GCS.Services]" Member="Realm_GPA_GCS_Services">
+    <Type Name="Realm_GPA_GCS_Service">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="turnaround_days" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="frequency" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="number_of_vessels" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="avg_capacity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="image_url" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Association Name="Realm_GPA_GCS_Service_Realm_GPA_GCS_Services_Carrier" Member="Realm_GPA_GCS_Services_Carriers" ThisKey="id" OtherKey="service_id" Type="Realm_GPA_GCS_Services_Carrier" />
+      <Association Name="Realm_GPA_GCS_Service_Realm_GPA_GCS_Services_Port" Member="Realm_GPA_GCS_Services_Ports" ThisKey="id" OtherKey="service_id" Type="Realm_GPA_GCS_Services_Port" />
+    </Type>
+  </Table>
+</Database>

@@ -10,87 +10,105 @@
 namespace Realm.GPA.GCS {
     
     
-    public partial class View {
+    public partial class AdminEditPort {
         
         /// <summary>
-        /// rapMap control.
+        /// valSummary control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadAjaxPanel rapMap;
+        protected global::System.Web.UI.WebControls.ValidationSummary valSummary;
         
         /// <summary>
-        /// lblWorldMap control.
+        /// lblName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblWorldMap;
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblName;
         
         /// <summary>
-        /// imWorld control.
+        /// txtName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageMap imWorld;
+        protected global::System.Web.UI.WebControls.TextBox txtName;
         
         /// <summary>
-        /// lblForeignPort control.
+        /// valName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblForeignPort;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valName;
         
         /// <summary>
-        /// ddlForeignPort control.
+        /// valNameDuplicate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlForeignPort;
+        protected global::System.Web.UI.WebControls.CustomValidator valNameDuplicate;
         
         /// <summary>
-        /// lblDomesticcCity control.
+        /// lblRegion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDomesticcCity;
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblRegion;
         
         /// <summary>
-        /// ddlDomesticCity control.
+        /// ddlRegion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDomesticCity;
+        protected global::System.Web.UI.WebControls.DropDownList ddlRegion;
         
         /// <summary>
-        /// lbSelect control.
+        /// valRegion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbSelect;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valRegion;
         
         /// <summary>
-        /// litScript control.
+        /// lbSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litScript;
+        protected global::System.Web.UI.WebControls.LinkButton lbSave;
+        
+        /// <summary>
+        /// lbDelete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbDelete;
+        
+        /// <summary>
+        /// hypReturn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hypReturn;
     }
 }
