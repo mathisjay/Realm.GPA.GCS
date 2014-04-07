@@ -187,6 +187,7 @@
     <Content Include="maps\aae1.jpg" />
     <Content Include="maps\aue.jpg" />
     <Content Include="maps\awe1.jpg" />
+    <Content Include="maps\awe3.jpg" />
     <Content Include="maps\world.png" />
     <Content Include="js\jquery.imagemapster.js" />
     <Content Include="js\jquery.imagemapster.min.js" />
