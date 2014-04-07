@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" Explicit="True" Inherits="Realm.GPA.GCS.View" CodeBehind="View.ascx.cs" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 
+
 <telerik:RadAjaxPanel runat="server" ID="rapMap">
     <div class="form-group">
         <span class="badge">1</span>
