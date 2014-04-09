@@ -18,11 +18,6 @@ namespace Realm.GPA.GCS
         {
         }
 
-        protected void lbAdd_Click(object sender, EventArgs e)
-        {
-            Response.Redirect(EditUrl("EditCarrier"), true);
-        }
-
         protected void gvList_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)
         {
             try
@@ -33,6 +28,14 @@ namespace Realm.GPA.GCS
             catch (Exception exc)
             {
                 Exceptions.ProcessModuleLoadException(this, exc);
+            }
+        }
+
+        protected void gvList_ItemCommand(object sender, GridCommandEventArgs e)
+        {
+            if (e.CommandName == "InitInsert")
+            {
+                Response.Redirect(EditUrl("EditCarrier"), true);
             }
         }
 

@@ -112,13 +112,22 @@ namespace Realm.GPA.GCS {
         protected global::DotNetNuke.UI.UserControls.LabelControl lblFrequency;
         
         /// <summary>
-        /// ddlFrequency control.
+        /// txtFrequency control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFrequency;
+        protected global::Telerik.Web.UI.RadNumericTextBox txtFrequency;
+        
+        /// <summary>
+        /// valFrequency control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valFrequency;
         
         /// <summary>
         /// lblNumberOfVessels control.

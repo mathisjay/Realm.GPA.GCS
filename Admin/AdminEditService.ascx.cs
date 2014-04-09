@@ -91,12 +91,7 @@ namespace Realm.GPA.GCS
                     txtAvgCapacity.Text = item.avg_capacity.ToString();
                     txtNumberOfVessels.Text = item.number_of_vessels.ToString();
                     txtTurnaroundDays.Text = item.turnaround_days.ToString();
-                    ListItem liFrequency = ddlFrequency.Items.FindByValue(item.frequency);
-                    if (liFrequency != null)
-                    {
-                        ddlFrequency.ClearSelection();
-                        liFrequency.Selected = true;
-                    }
+                    txtFrequency.Text = item.frequency.ToString();
                     txtImageUrl.Text = item.image_url;
                     if (!string.IsNullOrEmpty(item.image_url))
                     {
@@ -148,10 +143,7 @@ namespace Realm.GPA.GCS
                     {
                         item.turnaround_days = int.Parse(txtTurnaroundDays.Text);
                     }
-                    if (!string.IsNullOrEmpty(ddlFrequency.SelectedValue))
-                    {
-                        item.frequency = ddlFrequency.SelectedValue;
-                    }
+                    item.frequency = int.Parse(txtFrequency.Text);
                     item.image_url = txtImageUrl.Text;
 
                     dc.SubmitChanges();
@@ -279,7 +271,7 @@ namespace Realm.GPA.GCS
             try
             {
                 int id = (int)((GridDataItem)e.Item).GetDataKeyValue("id");
-                Realm_GPA_GCS_Services_Port item = dc.Realm_GPA_GCS_Services_Ports.Where(i => i.port_id == id && i.service_id == _id.GetValueOrDefault()).FirstOrDefault();
+                Realm_GPA_GCS_Services_Port item = dc.Realm_GPA_GCS_Services_Ports.Where(i => i.id == id).FirstOrDefault();
                 if (item != null)
                 {
                     dc.Realm_GPA_GCS_Services_Ports.DeleteOnSubmit(item);

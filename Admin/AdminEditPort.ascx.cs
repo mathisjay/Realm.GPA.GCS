@@ -131,7 +131,7 @@ namespace Realm.GPA.GCS
             {
                 args.IsValid = false;
             }
-            if (item != null && item.id != duplicate.id)
+            if (item != null && duplicate != null & item.id != duplicate.id)
             {
                 args.IsValid = false;
             }

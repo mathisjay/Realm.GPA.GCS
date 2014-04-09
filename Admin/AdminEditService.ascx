@@ -17,7 +17,7 @@
         var txt = $get('<%= txtImageUrl.ClientID %>');
         var img = $get('<%= imgImageUrl.ClientID %>');
 
-        var path = args.value[0].getAttribute("src", 2);
+        var path = args.value.getAttribute("src", 2);
         txt.value = path;
         img.src = path;
     }
@@ -51,11 +51,9 @@
         </div>
 
         <div class="dnnFormItem">
-            <dnn:label id="lblFrequency" runat="server" text="Frequency:" controlname="ddlFrequency" helptext="Select the frequency for this service." CssClass="dnnRequired" />
-            <asp:DropDownList runat="server" ID="ddlFrequency">
-                <asp:ListItem Value="" Text="Select Frequency" />
-                <asp:ListItem Value="Weekly" Text="Weekly" />
-            </asp:DropDownList>
+            <dnn:label id="lblFrequency" runat="server" text="Frequency (days):" controlname="txtFrequency" helptext="Enter the frequency in days for this service." CssClass="dnnRequired" />
+            <telerik:RadNumericTextBox runat="server" ID="txtFrequency" NumberFormat-DecimalDigits="0" CssClass="dnnRequired" MinValue="1" />
+            <asp:RequiredFieldValidator runat="server" ID="valFrequency" ControlToValidate="txtFrequency" Display="None" ErrorMessage="Frequency is required" ValidationGroup="edit_item" />
         </div>
 
         <div class="dnnFormItem">
@@ -75,7 +73,7 @@
             <asp:TextBox runat="server" ID="txtImageUrl" />
             <a onclick="$find('<%= doImageURL.ClientID %>').open('ImageManager', {CssClasses: []}); return false;" class="imageManager" title="Open Image Manager">Open Image Manager</a>
             <asp:RequiredFieldValidator runat="server" ID="valImageUrl" ControlToValidate="txtImageURL" ErrorMessage="ImageURL is required" Display="none" />
-            <telerik:DialogOpener runat="server" ID="doImageURL" />
+            <telerik:DialogOpener runat="server" ID="doImageURL" HandlerUrl="Telerik.Web.UI.DialogHandler.aspx" Style="display: none;" />
         </div>
         <div class="dnnFormItem">
             <dnn:Label runat="server" ID="lblImagePreview" text="Image Preview" controlname="imgImageUrl" helptext="Preview of the selected image" />
@@ -86,6 +84,7 @@
             <h3>Service Carriers</h3>
             <telerik:RadGrid ID="gvListCarriers" runat="server" AutoGenerateColumns="False" OnNeedDataSource="gvListCarriers_NeedDataSource" Width="100%" OnDeleteCommand="gvListCarriers_DeleteCommand" OnInsertCommand="gvListCarriers_InsertCommand" Skin="Metro">
                 <MasterTableView DataKeyNames="id" CommandItemDisplay="Top">
+                    <CommandItemSettings ShowAddNewRecordButton="true" ShowRefreshButton="false" />
                     <Columns>
                         <telerik:GridDropDownColumn HeaderText="Carrier Name" DataSourceID="ldsCarriers" DataField="id" ListTextField="name" ListValueField="id" />
                         <telerik:GridButtonColumn ConfirmText="Are you sure you want to delete this item?" ButtonType="ImageButton" CommandName="Delete" ItemStyle-Width="1%" />
@@ -101,7 +100,8 @@
         <asp:Panel runat="server" ID="pnlPorts">
             <h3>Service Ports</h3>
             <telerik:RadGrid ID="gvListPorts" runat="server" AutoGenerateColumns="False" OnNeedDataSource="gvListPorts_NeedDataSource" Width="100%" OnDeleteCommand="gvListPorts_DeleteCommand" OnUpdateCommand="gvListPorts_UpdateCommand" OnInsertCommand="gvListPorts_InsertCommand" Skin="Metro">
-                <MasterTableView DataKeyNames="id" CommandItemDisplay="Top">
+                <MasterTableView DataKeyNames="id" CommandItemDisplay="Top" AllowSorting="true" EditMode="InPlace">
+                    <CommandItemSettings ShowAddNewRecordButton="true" ShowRefreshButton="false" />
                     <Columns>
                         <telerik:GridEditCommandColumn ButtonType="ImageButton" ItemStyle-Width="1%" ItemStyle-Wrap="false" />
                         <telerik:GridDropDownColumn HeaderText="Port Name" DataSourceID="ldsPorts" DataField="port_id" ListTextField="name" ListValueField="id" />
