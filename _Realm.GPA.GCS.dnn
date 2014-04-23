@@ -1,0 +1,417 @@
+﻿<dotnetnuke type="Package" version="5.0">
+  <packages><package name="Realm.GPA.GCS" type="Module" version="14.4.25">
+  <friendlyName>Realm.GPA.GCS</friendlyName>
+  <description />
+  <iconFile />
+  <owner>
+    <name />
+    <organization />
+    <url />
+    <email />
+  </owner>
+  <license />
+  <releaseNotes />
+  <components>
+    <component type="Module">
+      <desktopModule>
+        <moduleName>Realm.GPA.GCS</moduleName>
+        <foldername>Realm.GPA.GCS</foldername>
+        <businessControllerClass />
+        <supportedFeatures />
+        <moduleDefinitions>
+          <moduleDefinition>
+            <friendlyName>Realm.GPA.GCS</friendlyName>
+            <defaultCacheTime>0</defaultCacheTime>
+            <moduleControls>
+              <moduleControl>
+                <controlKey />
+                <controlSrc>DesktopModules/Realm.GPA.GCS/Picker.ascx</controlSrc>
+                <supportsPartialRendering>False</supportsPartialRendering>
+                <controlTitle />
+                <controlType>View</controlType>
+                <iconFile />
+                <helpUrl />
+                <supportsPopUps>False</supportsPopUps>
+              </moduleControl>
+              <moduleControl>
+                <controlKey>EditCarrier</controlKey>
+                <controlSrc>DesktopModules/Realm.GPA.GCS/Admin/AdminEditCarrier.ascx</controlSrc>
+                <supportsPartialRendering>False</supportsPartialRendering>
+                <controlTitle />
+                <controlType>Edit</controlType>
+                <iconFile />
+                <helpUrl />
+                <supportsPopUps>False</supportsPopUps>
+              </moduleControl>
+              <moduleControl>
+                <controlKey>EditPort</controlKey>
+                <controlSrc>DesktopModules/Realm.GPA.GCS/Admin/AdminEditPort.ascx</controlSrc>
+                <supportsPartialRendering>False</supportsPartialRendering>
+                <controlTitle />
+                <controlType>Edit</controlType>
+                <iconFile />
+                <helpUrl />
+                <supportsPopUps>False</supportsPopUps>
+              </moduleControl>
+              <moduleControl>
+                <controlKey>EditRegion</controlKey>
+                <controlSrc>DesktopModules/Realm.GPA.GCS/Admin/AdminEditRegion.ascx</controlSrc>
+                <supportsPartialRendering>False</supportsPartialRendering>
+                <controlTitle />
+                <controlType>Edit</controlType>
+                <iconFile />
+                <helpUrl />
+                <supportsPopUps>False</supportsPopUps>
+              </moduleControl>
+              <moduleControl>
+                <controlKey>EditService</controlKey>
+                <controlSrc>DesktopModules/Realm.GPA.GCS/Admin/AdminEditService.ascx</controlSrc>
+                <supportsPartialRendering>False</supportsPartialRendering>
+                <controlTitle />
+                <controlType>Edit</controlType>
+                <iconFile />
+                <helpUrl />
+                <supportsPopUps>False</supportsPopUps>
+              </moduleControl>
+              <moduleControl>
+                <controlKey>EditUSCity</controlKey>
+                <controlSrc>DesktopModules/Realm.GPA.GCS/Admin/AdminEditUSCity.ascx</controlSrc>
+                <supportsPartialRendering>False</supportsPartialRendering>
+                <controlTitle />
+                <controlType>Edit</controlType>
+                <iconFile />
+                <helpUrl />
+                <supportsPopUps>False</supportsPopUps>
+              </moduleControl>
+              <moduleControl>
+                <controlKey>ListCarriers</controlKey>
+                <controlSrc>DesktopModules/Realm.GPA.GCS/Admin/AdminListCarriers.ascx</controlSrc>
+                <supportsPartialRendering>False</supportsPartialRendering>
+                <controlTitle />
+                <controlType>Edit</controlType>
+                <iconFile />
+                <helpUrl />
+                <supportsPopUps>False</supportsPopUps>
+              </moduleControl>
+              <moduleControl>
+                <controlKey>ListPorts</controlKey>
+                <controlSrc>DesktopModules/Realm.GPA.GCS/Admin/AdminListPorts.ascx</controlSrc>
+                <supportsPartialRendering>False</supportsPartialRendering>
+                <controlTitle />
+                <controlType>Edit</controlType>
+                <iconFile />
+                <helpUrl />
+                <supportsPopUps>False</supportsPopUps>
+              </moduleControl>
+              <moduleControl>
+                <controlKey>ListRegions</controlKey>
+                <controlSrc>DesktopModules/Realm.GPA.GCS/Admin/AdminListRegions.ascx</controlSrc>
+                <supportsPartialRendering>False</supportsPartialRendering>
+                <controlTitle />
+                <controlType>Edit</controlType>
+                <iconFile />
+                <helpUrl />
+                <supportsPopUps>False</supportsPopUps>
+              </moduleControl>
+              <moduleControl>
+                <controlKey>ListServices</controlKey>
+                <controlSrc>DesktopModules/Realm.GPA.GCS/Admin/AdminListServices.ascx</controlSrc>
+                <supportsPartialRendering>False</supportsPartialRendering>
+                <controlTitle />
+                <controlType>Edit</controlType>
+                <iconFile />
+                <helpUrl />
+                <supportsPopUps>False</supportsPopUps>
+              </moduleControl>
+              <moduleControl>
+                <controlKey>ListUSCity</controlKey>
+                <controlSrc>DesktopModules/Realm.GPA.GCS/Admin/AdminListUSCity.ascx</controlSrc>
+                <supportsPartialRendering>False</supportsPartialRendering>
+                <controlTitle />
+                <controlType>Edit</controlType>
+                <iconFile />
+                <helpUrl />
+                <supportsPopUps>False</supportsPopUps>
+              </moduleControl>
+            </moduleControls>
+          </moduleDefinition>
+          <moduleDefinition>
+            <friendlyName>Realm.GPA.GCS.Views</friendlyName>
+            <defaultCacheTime>0</defaultCacheTime>
+            <moduleControls>
+              <moduleControl>
+                <controlKey />
+                <controlSrc>DesktopModules/Realm.GPA.GCS/ViewDispatch.ascx</controlSrc>
+                <supportsPartialRendering>False</supportsPartialRendering>
+                <controlTitle />
+                <controlType>View</controlType>
+                <iconFile />
+                <helpUrl />
+                <supportsPopUps>False</supportsPopUps>
+              </moduleControl>
+            </moduleControls>
+          </moduleDefinition>
+        </moduleDefinitions>
+      </desktopModule>
+    </component>
+    <component type="Assembly">
+      <assemblies>
+        <basePath>bin</basePath>
+        <assembly>
+          <name>Realm.GPA.GCS.dll</name>
+        </assembly>
+      </assemblies>
+    </component>
+    <component type="File">
+      <files>
+        <basePath>DesktopModules\Realm.GPA.GCS</basePath>
+        <file>
+          <path>Admin</path>
+          <name>AdminEditCarrier.ascx</name>
+        </file>
+        <file>
+          <path>Admin</path>
+          <name>AdminEditPort.ascx</name>
+        </file>
+        <file>
+          <path>Admin</path>
+          <name>AdminEditService.ascx</name>
+        </file>
+        <file>
+          <path>Admin</path>
+          <name>AdminListCarriers.ascx</name>
+        </file>
+        <file>
+          <path>Admin</path>
+          <name>AdminListPorts.ascx</name>
+        </file>
+        <file>
+          <path>Admin</path>
+          <name>AdminListServices.ascx</name>
+        </file>
+        <file>
+          <path>Admin</path>
+          <name>AdminListRegions.ascx</name>
+        </file>
+        <file>
+          <path>Admin</path>
+          <name>AdminEditRegion.ascx</name>
+        </file>
+        <file>
+          <path>Admin</path>
+          <name>AdminListUSCity.ascx</name>
+        </file>
+        <file>
+          <path>Admin</path>
+          <name>AdminEditUSCity.ascx</name>
+        </file>
+        <file>
+          <path>Views</path>
+          <name>ServiceDetail.ascx</name>
+        </file>
+        <file>
+          <path>Views</path>
+          <name>ServiceList.ascx</name>
+        </file>
+        <file>
+          <path>Views</path>
+          <name>Welcome.ascx</name>
+        </file>
+        <file>
+          <name>ViewDispatch.ascx</name>
+        </file>
+        <file>
+          <path>img</path>
+          <name>document.png</name>
+        </file>
+        <file>
+          <path>img</path>
+          <name>image.png</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>aae1.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>amerigo.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>ans.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>apx.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>aue.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>awe1.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>awe3.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>awe4.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>awe5.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>awe7.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>azx.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>cagema-ml.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>cec.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>csal.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>gax.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>indamex.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>mecl1.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>mecl2.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>mina.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>msc-eq-nwc.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>msc-esca.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>msc-eu.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>msc-fe.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>msc-md.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>nce.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>north-america-ro-ro.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>nye.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>nye_sce-winter.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>rdw-pan.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>sae.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>sce.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>svs.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>ta2.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>tp3.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>tp7.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>turkon.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>usawa.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>waf-usa.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>world.png</name>
+        </file>
+        <file>
+          <path>js</path>
+          <name>jquery.imagemapster.js</name>
+        </file>
+        <file>
+          <path>js</path>
+          <name>jquery.imagemapster.min.js</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>wwl.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>zca.jpg</name>
+        </file>
+        <file>
+          <path>maps</path>
+          <name>zcp.jpg</name>
+        </file>
+        <file>
+          <name>module.css</name>
+        </file>
+        <file>
+          <name>Picker.ascx</name>
+        </file>
+      </files>
+    </component>
+  </components>
+</package></packages>
+</dotnetnuke>
