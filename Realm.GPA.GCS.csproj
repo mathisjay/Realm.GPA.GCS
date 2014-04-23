@@ -76,12 +76,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Telerik.Web.Design.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Web.UI, Version=2011.3.1115.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Telerik.Web.UI">
       <HintPath>..\..\bin\Telerik.Web.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Web.UI.Skins, Version=2011.3.1115.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Telerik.Web.UI.Skins">
       <HintPath>..\..\bin\Telerik.Web.UI.Skins.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -156,18 +154,46 @@
     <Compile Include="Admin\AdminEditUSCity.ascx.designer.cs">
       <DependentUpon>AdminEditUSCity.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Views\ServiceDetail.ascx.cs">
+      <DependentUpon>ServiceDetail.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ServiceDetail.ascx.designer.cs">
+      <DependentUpon>ServiceDetail.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ServiceList.ascx.cs">
+      <DependentUpon>ServiceList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ServiceList.ascx.designer.cs">
+      <DependentUpon>ServiceList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Welcome.ascx.cs">
+      <DependentUpon>Welcome.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Welcome.ascx.designer.cs">
+      <DependentUpon>Welcome.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewDispatch.ascx.cs">
+      <DependentUpon>ViewDispatch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewDispatch.ascx.designer.cs">
+      <DependentUpon>ViewDispatch.ascx</DependentUpon>
+    </Compile>
     <Compile Include="DAL\Realm.GPA.GCS.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Realm.GPA.GCS.dbml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View.ascx.cs">
-      <DependentUpon>View.ascx</DependentUpon>
+    <Compile Include="Picker.ascx.cs">
+      <DependentUpon>Picker.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="View.ascx.designer.cs">
-      <DependentUpon>View.ascx</DependentUpon>
+    <Compile Include="Picker.ascx.designer.cs">
+      <DependentUpon>Picker.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -181,18 +207,59 @@
     <Content Include="Admin\AdminEditRegion.ascx" />
     <Content Include="Admin\AdminListUSCity.ascx" />
     <Content Include="Admin\AdminEditUSCity.ascx" />
+    <Content Include="Views\ServiceDetail.ascx" />
+    <Content Include="Views\ServiceList.ascx" />
+    <Content Include="Views\Welcome.ascx" />
+    <Content Include="ViewDispatch.ascx" />
     <Content Include="DAL\Install.SqlDataProvider.sql" />
     <Content Include="img\document.png" />
     <Content Include="img\image.png" />
     <Content Include="maps\aae1.jpg" />
+    <Content Include="maps\amerigo.jpg" />
+    <Content Include="maps\ans.jpg" />
+    <Content Include="maps\apx.jpg" />
     <Content Include="maps\aue.jpg" />
     <Content Include="maps\awe1.jpg" />
     <Content Include="maps\awe3.jpg" />
+    <Content Include="maps\awe4.jpg" />
+    <Content Include="maps\awe5.jpg" />
+    <Content Include="maps\awe7.jpg" />
+    <Content Include="maps\azx.jpg" />
+    <Content Include="maps\cagema-ml.jpg" />
+    <Content Include="maps\cec.jpg" />
+    <Content Include="maps\csal.jpg" />
+    <Content Include="maps\gax.jpg" />
+    <Content Include="maps\indamex.jpg" />
+    <Content Include="maps\mecl1.jpg" />
+    <Content Include="maps\mecl2.jpg" />
+    <Content Include="maps\mina.jpg" />
+    <Content Include="maps\msc-eq-nwc.jpg" />
+    <Content Include="maps\msc-esca.jpg" />
+    <Content Include="maps\msc-eu.jpg" />
+    <Content Include="maps\msc-fe.jpg" />
+    <Content Include="maps\msc-md.jpg" />
+    <Content Include="maps\nce.jpg" />
+    <Content Include="maps\north-america-ro-ro.jpg" />
+    <Content Include="maps\nye.jpg" />
+    <Content Include="maps\nye_sce-winter.jpg" />
+    <Content Include="maps\rdw-pan.jpg" />
+    <Content Include="maps\sae.jpg" />
+    <Content Include="maps\sce.jpg" />
+    <Content Include="maps\svs.jpg" />
+    <Content Include="maps\ta2.jpg" />
+    <Content Include="maps\tp3.jpg" />
+    <Content Include="maps\tp7.jpg" />
+    <Content Include="maps\turkon.jpg" />
+    <Content Include="maps\usawa.jpg" />
+    <Content Include="maps\waf-usa.jpg" />
     <Content Include="maps\world.png" />
     <Content Include="js\jquery.imagemapster.js" />
     <Content Include="js\jquery.imagemapster.min.js" />
+    <Content Include="maps\wwl.jpg" />
+    <Content Include="maps\zca.jpg" />
+    <Content Include="maps\zcp.jpg" />
     <Content Include="module.css" />
-    <Content Include="View.ascx" />
+    <Content Include="Picker.ascx" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

@@ -4,6 +4,20 @@ using System.Web.UI;
 using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using Realm.GPA.GCS.DAL;
+using Telerik.Web.UI;
+using Telerik.Web.UI.Editor.DialogControls;
+using System;
+using System.Linq;
+using System.Web.UI;
+using DotNetNuke.Entities.Modules;
+using DotNetNuke.Services.Exceptions;
+using Realm.GPA.GCS.DAL;
+using Telerik.Web.UI;
+using System.Collections;
+using System.Collections.Generic;
+using System.Web.UI.WebControls;
+using Telerik.Web.UI.Editor.DialogControls;
+
 
 namespace Realm.GPA.GCS
 {
@@ -31,6 +45,7 @@ namespace Realm.GPA.GCS
             try
             {
                 hypReturn.NavigateUrl = EditUrl("ListCarriers");
+                SetUpImageManagers();
 
                 if (!Page.IsPostBack)
                 {
@@ -43,6 +58,35 @@ namespace Realm.GPA.GCS
             }
         }
 
+        private void SetUpImageManagers()
+        {
+
+            FileManagerDialogParameters imageManagerParameters = new FileManagerDialogParameters();
+            imageManagerParameters.ViewPaths = new string[] { "/DesktopModules/Realm.GPA.GCS/carriers" };
+            imageManagerParameters.UploadPaths = new string[] { "/DesktopModules/Realm.GPA.GCS/carriers" };
+            imageManagerParameters.DeletePaths = new string[] { "/DesktopModules/Realm.GPA.GCS/carriers" };
+            imageManagerParameters.MaxUploadFileSize = 5000000;
+
+            DialogDefinition imageManager = new DialogDefinition(typeof(ImageManagerDialog), imageManagerParameters);
+            imageManager.ClientCallbackFunction = "ImageManagerFunction";
+            imageManager.Width = Unit.Pixel(694);
+            imageManager.Height = Unit.Pixel(440);
+
+            doImageURL.DialogDefinitions.Add("ImageManager", imageManager);
+
+            FileManagerDialogParameters imageEditorParameters = new FileManagerDialogParameters();
+            imageEditorParameters.ViewPaths = new string[] { "/DesktopModules/Realm.GPA.GCS/carriers" };
+            imageEditorParameters.UploadPaths = new string[] { "/DesktopModules/Realm.GPA.GCS/carriers" };
+            imageEditorParameters.DeletePaths = new string[] { "/DesktopModules/Realm.GPA.GCS/carriers" };
+            imageEditorParameters.MaxUploadFileSize = 5000000;
+
+            DialogDefinition imageEditor = new DialogDefinition(typeof(ImageEditorDialog), imageEditorParameters);
+            imageEditor.Width = Unit.Pixel(832);
+            imageEditor.Height = Unit.Pixel(520);
+
+            doImageURL.DialogDefinitions.Add("ImageEditor", imageEditor);
+
+        }
         protected void LoadData()
         {
             try

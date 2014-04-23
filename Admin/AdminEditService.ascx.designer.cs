@@ -76,6 +76,24 @@ namespace Realm.GPA.GCS {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator valDescription;
         
         /// <summary>
+        /// lblLongDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblLongDescription;
+        
+        /// <summary>
+        /// txtLongDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.TextEditor txtLongDescription;
+        
+        /// <summary>
         /// lblTurnaroundDays control.
         /// </summary>
         /// <remarks>
@@ -263,6 +281,15 @@ namespace Realm.GPA.GCS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlPorts;
+        
+        /// <summary>
+        /// rapPorts control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadAjaxPanel rapPorts;
         
         /// <summary>
         /// gvListPorts control.

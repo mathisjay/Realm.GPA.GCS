@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" Explicit="True" Inherits="Realm.GPA.GCS.View" CodeBehind="View.ascx.cs" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" Explicit="True" Inherits="Realm.GPA.GCS.Picker" CodeBehind="Picker.ascx.cs" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 
 <telerik:RadAjaxPanel runat="server" ID="rapMap">
@@ -24,42 +24,44 @@
 
     <asp:LinkButton runat="server" ID="lbSelect" Text="Show Services" CssClass="btn btn-primary" OnClick="lbSelect_Click" />
 
+    <asp:HiddenField runat="server" ID="hdnRegion" ClientIDMode="Static" />
 
+    <telerik:RadCodeBlock runat="server" ID="rcb">
+        <script>
 
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
 
-    <script>
+            function EndRequestHandler(sender, args) {
+                setupMapModule();
+            }
 
-        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
+            function setupMapModule() {
 
-        function EndRequestHandler(sender, args) {
-            setupMapModule();
-        }
-
-
-        function setupMapModule() {
-
-            $('#imWorld').mapster(
-                {
-                    fillColor: 'fff000',
-                    fillOpacity: 0.3,
-                    clickNavigate: true,
-                    selected: true,
-                    mapKey: 'title',
-                    areas: [{
-                        key: 'Southeast United States',
-                        selected: true,
-                        isDeselectable: false,
-                        fillColor: '00ff00'
-                    }]
+                $('#imWorld').mapster(
+                    {
+                        fillColor: 'fff000',
+                        fillOpacity: 0.3,
+                        clickNavigate: true,
+                        mapKey: 'title'
+                    }
+                );
+                var region = $('#hdnRegion');
+                var region_name = region.val();
+                
+                if (region_name != '') {
+                    $('#imWorld').mapster('set', true, region_name, { fillColor: '00ff00' });
                 }
-            );
-        }
+            }
 
-        $(function () {
-            //alert('ready');
-            setupMapModule();
-        });
+            $(function () {
+                //alert('ready');
+                setupMapModule();
 
-    </script>
-    <asp:Literal runat="server" ID="litScript"></asp:Literal>
+            });
+
+        </script>
+        <asp:Literal runat="server" ID="litScript"></asp:Literal>
+
+    </telerik:RadCodeBlock>
 </telerik:RadAjaxPanel>
+

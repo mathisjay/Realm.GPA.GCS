@@ -10,7 +10,7 @@
 namespace Realm.GPA.GCS {
     
     
-    public partial class View {
+    public partial class Picker {
         
         /// <summary>
         /// rapMap control.
@@ -83,6 +83,24 @@ namespace Realm.GPA.GCS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbSelect;
+        
+        /// <summary>
+        /// hdnRegion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnRegion;
+        
+        /// <summary>
+        /// rcb control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadCodeBlock rcb;
         
         /// <summary>
         /// litScript control.

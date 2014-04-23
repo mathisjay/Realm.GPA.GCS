@@ -11,8 +11,64 @@ using System.Text;
 
 namespace Realm.GPA.GCS
 {
-    public partial class View : PortalModuleBase, DotNetNuke.Entities.Modules.IActionable
+    public partial class Picker : PortalModuleBase, DotNetNuke.Entities.Modules.IActionable
     {
+
+        public Nullable<int> world_port
+        {
+            get
+            {
+                if (Request.QueryString["world_port"] != null)
+                {
+                    return int.Parse(Request.QueryString["world_port"].ToString());
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        //public string region_name
+        //{
+        //    get
+        //    {
+        //        if (ViewState["region_name"] != null)
+        //        {
+        //            string _region_name = ViewState["region_name"].ToString();
+        //            return _region_name;
+        //        }
+        //        else
+        //        {
+        //            if (world_port.HasValue)
+        //            {
+        //                return dc.Realm_GPA_GCS_Ports.Where(i => i.id == world_port.GetValueOrDefault()).Select(i => i.Realm_GPA_GCS_Region.name).FirstOrDefault();
+        //            }
+        //            else
+        //            {
+        //                return string.Empty;
+        //            }
+        //        }
+        //    }
+        //    set
+        //    {
+        //        ViewState["region_name"] = value;
+        //    }
+        //}
+
+        public string us_city
+        {
+            get
+            {
+                string _us_city = string.Empty;
+                if (Request.QueryString["us_city"] != null)
+                {
+                    _us_city = Request.QueryString["us_city"].ToString();
+                }
+                return _us_city;
+            }
+        }
+
         DataContext dc = new DataContext();
 
         public int _selectedRegion
@@ -55,34 +111,18 @@ namespace Realm.GPA.GCS
         {
             try
             {
-                IncludeStyleSheets();
                 IncludeScripts();
 
                 if (!Page.IsPostBack)
                 {
-                    LoadData();
                     LoadRegionHotSpots();
                     LoadRegionPorts(null);
                     LoadUSCities();
+
+                    CheckSelection();
+
+
                 }
-            }
-            catch (Exception exc)
-            {
-                Exceptions.ProcessModuleLoadException(this, exc);
-            }
-        }
-
-        private void LoadData()
-        {
-
-        }
-
-        private void IncludeStyleSheets()
-        {
-            try
-            {
-                //CSS
-                //ClientResourceManager.RegisterStyleSheet(this.Page, this.TemplateSourceDirectory + "/css/ekko-lightbox.min.css");
             }
             catch (Exception exc)
             {
@@ -131,38 +171,22 @@ namespace Realm.GPA.GCS
             }
         }
 
-        private void AddSelectRegionScript(string key)
-        {
-            StringBuilder sb = new StringBuilder();
-
-            if (!string.IsNullOrEmpty(key))
-            {
-                sb.Append("<script>");
-                sb.Append("$(function () {");
-                sb.Append("$('#imWorld').mapster('set',true, '" + key + "');");
-                sb.Append("});");
-                sb.Append("</script>");
-            }
-
-            litScript.Text = sb.ToString();
-        }
 
         protected void imWorld_Click(object sender, System.Web.UI.WebControls.ImageMapEventArgs e)
         {
             _selectedRegion = int.Parse(e.PostBackValue);
-            Realm_GPA_GCS_Region region = dc.Realm_GPA_GCS_Regions.Where(i => i.id == _selectedRegion && i.domestic == false).FirstOrDefault();
+            Realm_GPA_GCS_Region region = dc.Realm_GPA_GCS_Regions.Where(i => i.id == _selectedRegion).FirstOrDefault();
             if (region != null)
             {
-                AddSelectRegionScript(region.name);
+                hdnRegion.Value = region.name;
+                ddlForeignPort.Focus();
             }
             else
             {
-                AddSelectRegionScript(string.Empty);
+                hdnRegion.Value = string.Empty;
             }
             LoadRegionPorts(region);
         }
-
-
 
         protected void LoadRegionPorts(Realm_GPA_GCS_Region region)
         {
@@ -214,10 +238,44 @@ namespace Realm.GPA.GCS
         protected void lbSelect_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(ddlForeignPort.SelectedValue) && !string.IsNullOrEmpty(ddlDomesticCity.SelectedValue))
-            { 
-
+            {
+                Response.Redirect(DotNetNuke.Common.Globals.NavigateURL(TabId, string.Empty, "world_port=" + ddlForeignPort.SelectedValue, "us_city=" + ddlDomesticCity.SelectedValue));
             }
         }
+
+        private void CheckSelection()
+        {
+            if (!string.IsNullOrEmpty(us_city))
+            {
+                ListItem liUSCity = ddlDomesticCity.Items.FindByValue(us_city);
+                if (liUSCity != null)
+                {
+                    ddlDomesticCity.ClearSelection();
+                    liUSCity.Selected = true;
+                }
+            }
+
+            if (world_port.HasValue)
+            {
+                Realm_GPA_GCS_Port port = dc.Realm_GPA_GCS_Ports.Where(i => i.id == world_port.GetValueOrDefault()).FirstOrDefault();
+                if (port != null)
+                {
+                    string region = port.Realm_GPA_GCS_Region.name;
+                    hdnRegion.Value = region;
+
+                    LoadRegionPorts(port.Realm_GPA_GCS_Region);
+
+                    ListItem liPort = ddlForeignPort.Items.FindByValue(port.id.ToString());
+                    if (liPort != null)
+                    {
+                        ddlForeignPort.ClearSelection();
+                        liPort.Selected = true;
+                    }
+                }
+            }
+        }
+
+
 
     }
 }

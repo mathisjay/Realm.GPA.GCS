@@ -21,7 +21,6 @@
         txt.value = path;
         img.src = path;
     }
-
 </script>
 
 <h2>Edit Service</h2>
@@ -42,6 +41,11 @@
             <dnn:label id="lblDescription" runat="server" text="Description:" controlname="txtDescription" helptext="Enter the descriptin of the service." cssclass="dnnRequired" />
             <asp:TextBox runat="server" ID="txtDescription" CssClass="dnnRequired" />
             <asp:RequiredFieldValidator runat="server" ID="valDescription" ControlToValidate="txtDescription" Display="None" ErrorMessage="Description is required" ValidationGroup="edit_item" />
+        </div>
+
+        <div class="dnnFormItem">
+            <dnn:label id="lblLongDescription" runat="server" text="Long Description:" controlname="txtLongDescription" helptext="Enter the long descriptin of the service." cssclass="dnnRequired" />
+            <dnn:texteditor runat="server" id="txtLongDescription" />
         </div>
 
         <div class="dnnFormItem">
@@ -99,22 +103,29 @@
 
         <asp:Panel runat="server" ID="pnlPorts">
             <h3>Service Ports</h3>
-            <telerik:RadGrid ID="gvListPorts" runat="server" AutoGenerateColumns="False" OnNeedDataSource="gvListPorts_NeedDataSource" Width="100%" OnDeleteCommand="gvListPorts_DeleteCommand" OnUpdateCommand="gvListPorts_UpdateCommand" OnInsertCommand="gvListPorts_InsertCommand" Skin="Metro">
-                <MasterTableView DataKeyNames="id" CommandItemDisplay="Top" AllowSorting="true" EditMode="InPlace">
-                    <CommandItemSettings ShowAddNewRecordButton="true" ShowRefreshButton="false" />
-                    <Columns>
-                        <telerik:GridEditCommandColumn ButtonType="ImageButton" ItemStyle-Width="1%" ItemStyle-Wrap="false" />
-                        <telerik:GridDropDownColumn HeaderText="Port Name" DataSourceID="ldsPorts" DataField="port_id" ListTextField="name" ListValueField="id" />
-                        <telerik:GridNumericColumn HeaderText="Days to Savannah" DataField="days_to" NumericType="Number" DecimalDigits="0" />
-                        <telerik:GridNumericColumn HeaderText="Days from Savannah" DataField="days_from" NumericType="Number" DecimalDigits="0" />
-                        <telerik:GridButtonColumn ConfirmText="Are you sure you want to delete this item?" ButtonType="ImageButton" CommandName="Delete" ItemStyle-Width="1%" />
-                    </Columns>
-                    <PagerStyle AlwaysVisible="True" Position="TopAndBottom" />
-                    <EditFormSettings>
-                        <EditColumn ButtonType="ImageButton" />
-                    </EditFormSettings>
-                </MasterTableView>
-            </telerik:RadGrid>
+            <telerik:RadAjaxPanel runat="server" ID="rapPorts">
+                <telerik:RadGrid ID="gvListPorts" runat="server" AutoGenerateColumns="False" OnNeedDataSource="gvListPorts_NeedDataSource" Width="100%" OnDeleteCommand="gvListPorts_DeleteCommand" OnUpdateCommand="gvListPorts_UpdateCommand" OnInsertCommand="gvListPorts_InsertCommand" Skin="Metro" OnRowDrop="gvListPorts_RowDrop">
+                    <MasterTableView DataKeyNames="id" CommandItemDisplay="Top" EditMode="InPlace">
+                        <CommandItemSettings ShowAddNewRecordButton="true" ShowRefreshButton="false" />
+                        <Columns>
+                            <telerik:GridDragDropColumn ItemStyle-Width="1%" DragImageUrl="~/DesktopModules/Realm.GPA.GCS/img/dragdrop.png" />
+                            <telerik:GridEditCommandColumn ButtonType="ImageButton" ItemStyle-Width="1%" ItemStyle-Wrap="false" />
+                            <telerik:GridDropDownColumn HeaderText="Port Name" DataSourceID="ldsPorts" DataField="port_id" ListTextField="name" ListValueField="id" />
+                            <telerik:GridNumericColumn HeaderText="Days to next port" DataField="days_to_next_port" NumericType="Number" DecimalDigits="0" />
+                            <telerik:GridNumericColumn HeaderText="Days to Savannah" DataField="days_to_savannah" NumericType="Number" DecimalDigits="0" />
+                            <telerik:GridNumericColumn HeaderText="Days from Savannah" DataField="days_from_savannah" NumericType="Number" DecimalDigits="0" />
+                            <telerik:GridButtonColumn ConfirmText="Are you sure you want to delete this item?" ButtonType="ImageButton" CommandName="Delete" ItemStyle-Width="1%" />
+                        </Columns>
+                        <PagerStyle AlwaysVisible="True" Position="TopAndBottom" />
+                        <EditFormSettings>
+                            <EditColumn ButtonType="ImageButton" />
+                        </EditFormSettings>
+                    </MasterTableView>
+                    <ClientSettings AllowRowsDragDrop="True">
+                        <Selecting AllowRowSelect="true" />
+                    </ClientSettings>
+                </telerik:RadGrid>
+            </telerik:RadAjaxPanel>
         </asp:Panel>
 
     </fieldset>

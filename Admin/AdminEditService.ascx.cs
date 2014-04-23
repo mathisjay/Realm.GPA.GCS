@@ -88,6 +88,7 @@ namespace Realm.GPA.GCS
                 {
                     txtName.Text = item.name;
                     txtDescription.Text = item.description;
+                    txtLongDescription.Text = item.long_description;
                     txtAvgCapacity.Text = item.avg_capacity.ToString();
                     txtNumberOfVessels.Text = item.number_of_vessels.ToString();
                     txtTurnaroundDays.Text = item.turnaround_days.ToString();
@@ -131,6 +132,8 @@ namespace Realm.GPA.GCS
 
                     item.name = txtName.Text;
                     item.description = txtDescription.Text;
+                    item.long_description = txtLongDescription.Text;
+
                     if (!string.IsNullOrEmpty(txtAvgCapacity.Text))
                     {
                         item.avg_capacity = int.Parse(txtAvgCapacity.Text);
@@ -257,7 +260,7 @@ namespace Realm.GPA.GCS
         {
             try
             {
-                IQueryable<Realm_GPA_GCS_Services_Port> query = dc.Realm_GPA_GCS_Services_Ports.Where(i => i.service_id == _id.GetValueOrDefault()).OrderBy(i => i.Realm_GPA_GCS_Port.name);
+                IQueryable<Realm_GPA_GCS_Services_Port> query = dc.Realm_GPA_GCS_Services_Ports.Where(i => i.service_id == _id.GetValueOrDefault()).OrderBy(i => i.order);
                 gvListPorts.DataSource = query;
             }
             catch (Exception exc)
@@ -293,17 +296,32 @@ namespace Realm.GPA.GCS
                 Realm_GPA_GCS_Services_Port item = new Realm_GPA_GCS_Services_Port();
                 dc.Realm_GPA_GCS_Services_Ports.InsertOnSubmit(item);
                 item.service_id = _id.GetValueOrDefault();
+                List<Realm_GPA_GCS_Services_Port> items = dc.Realm_GPA_GCS_Services_Ports.Where(i => i.service_id == _id.GetValueOrDefault()).ToList();
+                if (items.Count > 0)
+                {
+                    item.order = items.Max(i => i.order) + 1;
+                }
+                else
+                {
+                    item.order = 0;
+                }
+
 
                 Hashtable values = new Hashtable();
                 gei.ExtractValues(values);
                 item.port_id = int.Parse(values["port_id"].ToString());
-                if (values["days_to"] != null)
+                if (values["days_to_savannah"] != null)
                 {
-                    item.days_to = int.Parse(values["days_to"].ToString());
+                    item.days_to_savannah = int.Parse(values["days_to_savannah"].ToString());
                 }
-                if (values["days_from"] != null)
+                if (values["days_from_savannah"] != null)
                 {
-                    item.days_from = int.Parse(values["days_from"].ToString());
+                    item.days_from_savannah = int.Parse(values["days_from_savannah"].ToString());
+                }
+
+                if (values["days_to_next_port"] != null)
+                {
+                    item.days_to_next_port = int.Parse(values["days_to_next_port"].ToString());
                 }
 
                 dc.SubmitChanges();
@@ -335,6 +353,49 @@ namespace Realm.GPA.GCS
                 Exceptions.ProcessModuleLoadException(this, exc);
             }
         }
+
+        protected void gvListPorts_RowDrop(object sender, Telerik.Web.UI.GridDragDropEventArgs e)
+        {
+            if (e.DestDataItem != null && e.DestDataItem.OwnerGridID == gvListPorts.ClientID)
+            {
+                List<Realm_GPA_GCS_Services_Port> items = dc.Realm_GPA_GCS_Services_Ports.Where(i => i.service_id == _id.GetValueOrDefault()).ToList();
+                int destID = (int)e.DestDataItem.GetDataKeyValue("id");
+                Realm_GPA_GCS_Services_Port destItem = items.Where(i => i.id == destID).SingleOrDefault();
+
+                int dragID = (int)e.DraggedItems[0].GetDataKeyValue("id");
+                Realm_GPA_GCS_Services_Port dragItem = items.Where(i => i.id == dragID).SingleOrDefault();
+
+                if (e.DropPosition == GridItemDropPosition.Above)
+                {
+                    List<Realm_GPA_GCS_Services_Port> moveItems = items.Where(i => i.order >= destItem.order && i.id != dragItem.id).ToList();
+                    dragItem.order = destItem.order;
+                    foreach (Realm_GPA_GCS_Services_Port item in moveItems)
+                    {
+                        item.order = item.order + 1;
+                    }
+                }
+                if (e.DropPosition == GridItemDropPosition.Below)
+                {
+                    List<Realm_GPA_GCS_Services_Port> moveItems = items.Where(i => i.order > destItem.order && i.id != dragItem.id).ToList();
+                    dragItem.order = destItem.order + 1;
+                    foreach (Realm_GPA_GCS_Services_Port item in moveItems)
+                    {
+                        item.order = item.order + 1;
+                    }
+                }
+
+                //reorder
+                items = items.OrderBy(i => i.order).ToList();
+                for (int x = 0; x < items.Count; x++)
+                {
+                    items[x].order = x + 1;
+                }
+
+                dc.SubmitChanges();
+                gvListPorts.Rebind();
+            }
+        }
+
 
     }
 }

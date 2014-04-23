@@ -5,6 +5,24 @@
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 <%@ Register TagPrefix="dnn" TagName="URL" Src="~/controls/URLControl.ascx" %>
 
+<script type="text/javascript">
+    function ImageManagerFunction(sender, args) {
+        if (!args) {
+            alert('No file was selected!');
+            return false;
+        }
+
+        var selectedItem = args.get_value();
+
+        var txt = $get('<%= txtImageUrl.ClientID %>');
+        var img = $get('<%= imgImageUrl.ClientID %>');
+
+        var path = args.value.getAttribute("src", 2);
+        txt.value = path;
+        img.src = path;
+    }
+</script>
+
 <h2>Edit Carrier</h2>
 
 <div class="dnnForm">
@@ -22,6 +40,18 @@
         <div class="dnnFormItem">
             <dnn:label id="lblWebsiteURL" runat="server" text="Website URL:" controlname="txtWebsiteURL" helptext="Enter the website URL for the service." />
             <asp:TextBox runat="server" ID="txtWebsiteURL" />
+        </div>
+
+        <div class="dnnFormItem">
+            <dnn:Label runat="server" ID="lblImageUrl" text="Image" controlname="txtImage" helptext="Select the image" />
+            <asp:TextBox runat="server" ID="txtImageUrl" />
+            <a onclick="$find('<%= doImageURL.ClientID %>').open('ImageManager', {CssClasses: []}); return false;" class="imageManager" title="Open Image Manager">Open Image Manager</a>
+            <asp:RequiredFieldValidator runat="server" ID="valImageUrl" ControlToValidate="txtImageURL" ErrorMessage="ImageURL is required" Display="none" />
+            <telerik:DialogOpener runat="server" ID="doImageURL" HandlerUrl="Telerik.Web.UI.DialogHandler.aspx" Style="display: none;" />
+        </div>
+        <div class="dnnFormItem">
+            <dnn:Label runat="server" ID="lblImagePreview" text="Image Preview" controlname="imgImageUrl" helptext="Preview of the selected image" />
+            <asp:Image runat="server" ID="imgImageUrl" />
         </div>
 
     </fieldset>

@@ -33,24 +33,24 @@ namespace Realm.GPA.GCS.DAL
     partial void InsertRealm_GPA_GCS_Carrier(Realm_GPA_GCS_Carrier instance);
     partial void UpdateRealm_GPA_GCS_Carrier(Realm_GPA_GCS_Carrier instance);
     partial void DeleteRealm_GPA_GCS_Carrier(Realm_GPA_GCS_Carrier instance);
+    partial void InsertRealm_GPA_GCS_US_City(Realm_GPA_GCS_US_City instance);
+    partial void UpdateRealm_GPA_GCS_US_City(Realm_GPA_GCS_US_City instance);
+    partial void DeleteRealm_GPA_GCS_US_City(Realm_GPA_GCS_US_City instance);
     partial void InsertRealm_GPA_GCS_Port(Realm_GPA_GCS_Port instance);
     partial void UpdateRealm_GPA_GCS_Port(Realm_GPA_GCS_Port instance);
     partial void DeleteRealm_GPA_GCS_Port(Realm_GPA_GCS_Port instance);
     partial void InsertRealm_GPA_GCS_Region(Realm_GPA_GCS_Region instance);
     partial void UpdateRealm_GPA_GCS_Region(Realm_GPA_GCS_Region instance);
     partial void DeleteRealm_GPA_GCS_Region(Realm_GPA_GCS_Region instance);
-    partial void InsertRealm_GPA_GCS_Services_Carrier(Realm_GPA_GCS_Services_Carrier instance);
-    partial void UpdateRealm_GPA_GCS_Services_Carrier(Realm_GPA_GCS_Services_Carrier instance);
-    partial void DeleteRealm_GPA_GCS_Services_Carrier(Realm_GPA_GCS_Services_Carrier instance);
-    partial void InsertRealm_GPA_GCS_US_City(Realm_GPA_GCS_US_City instance);
-    partial void UpdateRealm_GPA_GCS_US_City(Realm_GPA_GCS_US_City instance);
-    partial void DeleteRealm_GPA_GCS_US_City(Realm_GPA_GCS_US_City instance);
-    partial void InsertRealm_GPA_GCS_Services_Port(Realm_GPA_GCS_Services_Port instance);
-    partial void UpdateRealm_GPA_GCS_Services_Port(Realm_GPA_GCS_Services_Port instance);
-    partial void DeleteRealm_GPA_GCS_Services_Port(Realm_GPA_GCS_Services_Port instance);
     partial void InsertRealm_GPA_GCS_Service(Realm_GPA_GCS_Service instance);
     partial void UpdateRealm_GPA_GCS_Service(Realm_GPA_GCS_Service instance);
     partial void DeleteRealm_GPA_GCS_Service(Realm_GPA_GCS_Service instance);
+    partial void InsertRealm_GPA_GCS_Services_Carrier(Realm_GPA_GCS_Services_Carrier instance);
+    partial void UpdateRealm_GPA_GCS_Services_Carrier(Realm_GPA_GCS_Services_Carrier instance);
+    partial void DeleteRealm_GPA_GCS_Services_Carrier(Realm_GPA_GCS_Services_Carrier instance);
+    partial void InsertRealm_GPA_GCS_Services_Port(Realm_GPA_GCS_Services_Port instance);
+    partial void UpdateRealm_GPA_GCS_Services_Port(Realm_GPA_GCS_Services_Port instance);
+    partial void DeleteRealm_GPA_GCS_Services_Port(Realm_GPA_GCS_Services_Port instance);
     #endregion
 		
 		public DataContext() : 
@@ -91,6 +91,14 @@ namespace Realm.GPA.GCS.DAL
 			}
 		}
 		
+		public System.Data.Linq.Table<Realm_GPA_GCS_US_City> Realm_GPA_GCS_US_Cities
+		{
+			get
+			{
+				return this.GetTable<Realm_GPA_GCS_US_City>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Realm_GPA_GCS_Port> Realm_GPA_GCS_Ports
 		{
 			get
@@ -107,6 +115,14 @@ namespace Realm.GPA.GCS.DAL
 			}
 		}
 		
+		public System.Data.Linq.Table<Realm_GPA_GCS_Service> Realm_GPA_GCS_Services
+		{
+			get
+			{
+				return this.GetTable<Realm_GPA_GCS_Service>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Realm_GPA_GCS_Services_Carrier> Realm_GPA_GCS_Services_Carriers
 		{
 			get
@@ -115,27 +131,11 @@ namespace Realm.GPA.GCS.DAL
 			}
 		}
 		
-		public System.Data.Linq.Table<Realm_GPA_GCS_US_City> Realm_GPA_GCS_US_Cities
-		{
-			get
-			{
-				return this.GetTable<Realm_GPA_GCS_US_City>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Realm_GPA_GCS_Services_Port> Realm_GPA_GCS_Services_Ports
 		{
 			get
 			{
 				return this.GetTable<Realm_GPA_GCS_Services_Port>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Realm_GPA_GCS_Service> Realm_GPA_GCS_Services
-		{
-			get
-			{
-				return this.GetTable<Realm_GPA_GCS_Service>();
 			}
 		}
 	}
@@ -152,6 +152,8 @@ namespace Realm.GPA.GCS.DAL
 		
 		private string _website_url;
 		
+		private string _image_url;
+		
 		private EntitySet<Realm_GPA_GCS_Services_Carrier> _Realm_GPA_GCS_Services_Carriers;
 		
     #region Extensibility Method Definitions
@@ -164,6 +166,8 @@ namespace Realm.GPA.GCS.DAL
     partial void OnnameChanged();
     partial void Onwebsite_urlChanging(string value);
     partial void Onwebsite_urlChanged();
+    partial void Onimage_urlChanging(string value);
+    partial void Onimage_urlChanged();
     #endregion
 		
 		public Realm_GPA_GCS_Carrier()
@@ -232,6 +236,26 @@ namespace Realm.GPA.GCS.DAL
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image_url", DbType="NVarChar(250)")]
+		public string image_url
+		{
+			get
+			{
+				return this._image_url;
+			}
+			set
+			{
+				if ((this._image_url != value))
+				{
+					this.Onimage_urlChanging(value);
+					this.SendPropertyChanging();
+					this._image_url = value;
+					this.SendPropertyChanged("image_url");
+					this.Onimage_urlChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Realm_GPA_GCS_Carrier_Realm_GPA_GCS_Services_Carrier", Storage="_Realm_GPA_GCS_Services_Carriers", ThisKey="id", OtherKey="carrier_id")]
 		public EntitySet<Realm_GPA_GCS_Services_Carrier> Realm_GPA_GCS_Services_Carriers
 		{
@@ -275,6 +299,188 @@ namespace Realm.GPA.GCS.DAL
 		{
 			this.SendPropertyChanging();
 			entity.Realm_GPA_GCS_Carrier = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Realm.GPA.GCS.US_Cities]")]
+	public partial class Realm_GPA_GCS_US_City : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _name;
+		
+		private int _rail_time_to;
+		
+		private int _rail_time_from;
+		
+		private int _truck_time_to;
+		
+		private int _truck_time_from;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void Onrail_time_toChanging(int value);
+    partial void Onrail_time_toChanged();
+    partial void Onrail_time_fromChanging(int value);
+    partial void Onrail_time_fromChanged();
+    partial void Ontruck_time_toChanging(int value);
+    partial void Ontruck_time_toChanged();
+    partial void Ontruck_time_fromChanging(int value);
+    partial void Ontruck_time_fromChanged();
+    #endregion
+		
+		public Realm_GPA_GCS_US_City()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rail_time_to", DbType="Int NOT NULL")]
+		public int rail_time_to
+		{
+			get
+			{
+				return this._rail_time_to;
+			}
+			set
+			{
+				if ((this._rail_time_to != value))
+				{
+					this.Onrail_time_toChanging(value);
+					this.SendPropertyChanging();
+					this._rail_time_to = value;
+					this.SendPropertyChanged("rail_time_to");
+					this.Onrail_time_toChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rail_time_from", DbType="Int NOT NULL")]
+		public int rail_time_from
+		{
+			get
+			{
+				return this._rail_time_from;
+			}
+			set
+			{
+				if ((this._rail_time_from != value))
+				{
+					this.Onrail_time_fromChanging(value);
+					this.SendPropertyChanging();
+					this._rail_time_from = value;
+					this.SendPropertyChanged("rail_time_from");
+					this.Onrail_time_fromChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_truck_time_to", DbType="Int NOT NULL")]
+		public int truck_time_to
+		{
+			get
+			{
+				return this._truck_time_to;
+			}
+			set
+			{
+				if ((this._truck_time_to != value))
+				{
+					this.Ontruck_time_toChanging(value);
+					this.SendPropertyChanging();
+					this._truck_time_to = value;
+					this.SendPropertyChanged("truck_time_to");
+					this.Ontruck_time_toChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_truck_time_from", DbType="Int NOT NULL")]
+		public int truck_time_from
+		{
+			get
+			{
+				return this._truck_time_from;
+			}
+			set
+			{
+				if ((this._truck_time_from != value))
+				{
+					this.Ontruck_time_fromChanging(value);
+					this.SendPropertyChanging();
+					this._truck_time_from = value;
+					this.SendPropertyChanged("truck_time_from");
+					this.Ontruck_time_fromChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	
@@ -667,6 +873,316 @@ namespace Realm.GPA.GCS.DAL
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Realm.GPA.GCS.Services]")]
+	public partial class Realm_GPA_GCS_Service : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _name;
+		
+		private string _description;
+		
+		private int _turnaround_days;
+		
+		private int _frequency;
+		
+		private int _number_of_vessels;
+		
+		private int _avg_capacity;
+		
+		private string _image_url;
+		
+		private string _long_description;
+		
+		private EntitySet<Realm_GPA_GCS_Services_Carrier> _Realm_GPA_GCS_Services_Carriers;
+		
+		private EntitySet<Realm_GPA_GCS_Services_Port> _Realm_GPA_GCS_Services_Ports;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    partial void OndescriptionChanging(string value);
+    partial void OndescriptionChanged();
+    partial void Onturnaround_daysChanging(int value);
+    partial void Onturnaround_daysChanged();
+    partial void OnfrequencyChanging(int value);
+    partial void OnfrequencyChanged();
+    partial void Onnumber_of_vesselsChanging(int value);
+    partial void Onnumber_of_vesselsChanged();
+    partial void Onavg_capacityChanging(int value);
+    partial void Onavg_capacityChanged();
+    partial void Onimage_urlChanging(string value);
+    partial void Onimage_urlChanged();
+    partial void Onlong_descriptionChanging(string value);
+    partial void Onlong_descriptionChanged();
+    #endregion
+		
+		public Realm_GPA_GCS_Service()
+		{
+			this._Realm_GPA_GCS_Services_Carriers = new EntitySet<Realm_GPA_GCS_Services_Carrier>(new Action<Realm_GPA_GCS_Services_Carrier>(this.attach_Realm_GPA_GCS_Services_Carriers), new Action<Realm_GPA_GCS_Services_Carrier>(this.detach_Realm_GPA_GCS_Services_Carriers));
+			this._Realm_GPA_GCS_Services_Ports = new EntitySet<Realm_GPA_GCS_Services_Port>(new Action<Realm_GPA_GCS_Services_Port>(this.attach_Realm_GPA_GCS_Services_Ports), new Action<Realm_GPA_GCS_Services_Port>(this.detach_Realm_GPA_GCS_Services_Ports));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
+		public string description
+		{
+			get
+			{
+				return this._description;
+			}
+			set
+			{
+				if ((this._description != value))
+				{
+					this.OndescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._description = value;
+					this.SendPropertyChanged("description");
+					this.OndescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_turnaround_days", DbType="Int NOT NULL")]
+		public int turnaround_days
+		{
+			get
+			{
+				return this._turnaround_days;
+			}
+			set
+			{
+				if ((this._turnaround_days != value))
+				{
+					this.Onturnaround_daysChanging(value);
+					this.SendPropertyChanging();
+					this._turnaround_days = value;
+					this.SendPropertyChanged("turnaround_days");
+					this.Onturnaround_daysChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_frequency", DbType="Int NOT NULL")]
+		public int frequency
+		{
+			get
+			{
+				return this._frequency;
+			}
+			set
+			{
+				if ((this._frequency != value))
+				{
+					this.OnfrequencyChanging(value);
+					this.SendPropertyChanging();
+					this._frequency = value;
+					this.SendPropertyChanged("frequency");
+					this.OnfrequencyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_number_of_vessels", DbType="Int NOT NULL")]
+		public int number_of_vessels
+		{
+			get
+			{
+				return this._number_of_vessels;
+			}
+			set
+			{
+				if ((this._number_of_vessels != value))
+				{
+					this.Onnumber_of_vesselsChanging(value);
+					this.SendPropertyChanging();
+					this._number_of_vessels = value;
+					this.SendPropertyChanged("number_of_vessels");
+					this.Onnumber_of_vesselsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_avg_capacity", DbType="Int NOT NULL")]
+		public int avg_capacity
+		{
+			get
+			{
+				return this._avg_capacity;
+			}
+			set
+			{
+				if ((this._avg_capacity != value))
+				{
+					this.Onavg_capacityChanging(value);
+					this.SendPropertyChanging();
+					this._avg_capacity = value;
+					this.SendPropertyChanged("avg_capacity");
+					this.Onavg_capacityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image_url", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
+		public string image_url
+		{
+			get
+			{
+				return this._image_url;
+			}
+			set
+			{
+				if ((this._image_url != value))
+				{
+					this.Onimage_urlChanging(value);
+					this.SendPropertyChanging();
+					this._image_url = value;
+					this.SendPropertyChanged("image_url");
+					this.Onimage_urlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_long_description", DbType="NVarChar(MAX)")]
+		public string long_description
+		{
+			get
+			{
+				return this._long_description;
+			}
+			set
+			{
+				if ((this._long_description != value))
+				{
+					this.Onlong_descriptionChanging(value);
+					this.SendPropertyChanging();
+					this._long_description = value;
+					this.SendPropertyChanged("long_description");
+					this.Onlong_descriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Realm_GPA_GCS_Service_Realm_GPA_GCS_Services_Carrier", Storage="_Realm_GPA_GCS_Services_Carriers", ThisKey="id", OtherKey="service_id")]
+		public EntitySet<Realm_GPA_GCS_Services_Carrier> Realm_GPA_GCS_Services_Carriers
+		{
+			get
+			{
+				return this._Realm_GPA_GCS_Services_Carriers;
+			}
+			set
+			{
+				this._Realm_GPA_GCS_Services_Carriers.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Realm_GPA_GCS_Service_Realm_GPA_GCS_Services_Port", Storage="_Realm_GPA_GCS_Services_Ports", ThisKey="id", OtherKey="service_id")]
+		public EntitySet<Realm_GPA_GCS_Services_Port> Realm_GPA_GCS_Services_Ports
+		{
+			get
+			{
+				return this._Realm_GPA_GCS_Services_Ports;
+			}
+			set
+			{
+				this._Realm_GPA_GCS_Services_Ports.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Realm_GPA_GCS_Services_Carriers(Realm_GPA_GCS_Services_Carrier entity)
+		{
+			this.SendPropertyChanging();
+			entity.Realm_GPA_GCS_Service = this;
+		}
+		
+		private void detach_Realm_GPA_GCS_Services_Carriers(Realm_GPA_GCS_Services_Carrier entity)
+		{
+			this.SendPropertyChanging();
+			entity.Realm_GPA_GCS_Service = null;
+		}
+		
+		private void attach_Realm_GPA_GCS_Services_Ports(Realm_GPA_GCS_Services_Port entity)
+		{
+			this.SendPropertyChanging();
+			entity.Realm_GPA_GCS_Service = this;
+		}
+		
+		private void detach_Realm_GPA_GCS_Services_Ports(Realm_GPA_GCS_Services_Port entity)
+		{
+			this.SendPropertyChanging();
+			entity.Realm_GPA_GCS_Service = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Realm.GPA.GCS.Services_Carriers]")]
 	public partial class Realm_GPA_GCS_Services_Carrier : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -859,188 +1375,6 @@ namespace Realm.GPA.GCS.DAL
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Realm.GPA.GCS.US_Cities]")]
-	public partial class Realm_GPA_GCS_US_City : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _name;
-		
-		private int _rail_time_to;
-		
-		private int _rail_time_from;
-		
-		private int _truck_time_to;
-		
-		private int _truck_time_from;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    partial void Onrail_time_toChanging(int value);
-    partial void Onrail_time_toChanged();
-    partial void Onrail_time_fromChanging(int value);
-    partial void Onrail_time_fromChanged();
-    partial void Ontruck_time_toChanging(int value);
-    partial void Ontruck_time_toChanged();
-    partial void Ontruck_time_fromChanging(int value);
-    partial void Ontruck_time_fromChanged();
-    #endregion
-		
-		public Realm_GPA_GCS_US_City()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this.OnnameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rail_time_to", DbType="Int NOT NULL")]
-		public int rail_time_to
-		{
-			get
-			{
-				return this._rail_time_to;
-			}
-			set
-			{
-				if ((this._rail_time_to != value))
-				{
-					this.Onrail_time_toChanging(value);
-					this.SendPropertyChanging();
-					this._rail_time_to = value;
-					this.SendPropertyChanged("rail_time_to");
-					this.Onrail_time_toChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rail_time_from", DbType="Int NOT NULL")]
-		public int rail_time_from
-		{
-			get
-			{
-				return this._rail_time_from;
-			}
-			set
-			{
-				if ((this._rail_time_from != value))
-				{
-					this.Onrail_time_fromChanging(value);
-					this.SendPropertyChanging();
-					this._rail_time_from = value;
-					this.SendPropertyChanged("rail_time_from");
-					this.Onrail_time_fromChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_truck_time_to", DbType="Int NOT NULL")]
-		public int truck_time_to
-		{
-			get
-			{
-				return this._truck_time_to;
-			}
-			set
-			{
-				if ((this._truck_time_to != value))
-				{
-					this.Ontruck_time_toChanging(value);
-					this.SendPropertyChanging();
-					this._truck_time_to = value;
-					this.SendPropertyChanged("truck_time_to");
-					this.Ontruck_time_toChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_truck_time_from", DbType="Int NOT NULL")]
-		public int truck_time_from
-		{
-			get
-			{
-				return this._truck_time_from;
-			}
-			set
-			{
-				if ((this._truck_time_from != value))
-				{
-					this.Ontruck_time_fromChanging(value);
-					this.SendPropertyChanging();
-					this._truck_time_from = value;
-					this.SendPropertyChanged("truck_time_from");
-					this.Ontruck_time_fromChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Realm.GPA.GCS.Services_Ports]")]
 	public partial class Realm_GPA_GCS_Services_Port : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1053,9 +1387,13 @@ namespace Realm.GPA.GCS.DAL
 		
 		private int _port_id;
 		
-		private System.Nullable<int> _days_to;
+		private System.Nullable<int> _days_to_savannah;
 		
-		private System.Nullable<int> _days_from;
+		private System.Nullable<int> _days_from_savannah;
+		
+		private int _days_to_next_port;
+		
+		private int _order;
 		
 		private EntityRef<Realm_GPA_GCS_Port> _Realm_GPA_GCS_Port;
 		
@@ -1071,10 +1409,14 @@ namespace Realm.GPA.GCS.DAL
     partial void Onservice_idChanged();
     partial void Onport_idChanging(int value);
     partial void Onport_idChanged();
-    partial void Ondays_toChanging(System.Nullable<int> value);
-    partial void Ondays_toChanged();
-    partial void Ondays_fromChanging(System.Nullable<int> value);
-    partial void Ondays_fromChanged();
+    partial void Ondays_to_savannahChanging(System.Nullable<int> value);
+    partial void Ondays_to_savannahChanged();
+    partial void Ondays_from_savannahChanging(System.Nullable<int> value);
+    partial void Ondays_from_savannahChanged();
+    partial void Ondays_to_next_portChanging(int value);
+    partial void Ondays_to_next_portChanged();
+    partial void OnorderChanging(int value);
+    partial void OnorderChanged();
     #endregion
 		
 		public Realm_GPA_GCS_Services_Port()
@@ -1152,42 +1494,82 @@ namespace Realm.GPA.GCS.DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_days_to", DbType="Int")]
-		public System.Nullable<int> days_to
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_days_to_savannah", DbType="Int")]
+		public System.Nullable<int> days_to_savannah
 		{
 			get
 			{
-				return this._days_to;
+				return this._days_to_savannah;
 			}
 			set
 			{
-				if ((this._days_to != value))
+				if ((this._days_to_savannah != value))
 				{
-					this.Ondays_toChanging(value);
+					this.Ondays_to_savannahChanging(value);
 					this.SendPropertyChanging();
-					this._days_to = value;
-					this.SendPropertyChanged("days_to");
-					this.Ondays_toChanged();
+					this._days_to_savannah = value;
+					this.SendPropertyChanged("days_to_savannah");
+					this.Ondays_to_savannahChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_days_from", DbType="Int")]
-		public System.Nullable<int> days_from
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_days_from_savannah", DbType="Int")]
+		public System.Nullable<int> days_from_savannah
 		{
 			get
 			{
-				return this._days_from;
+				return this._days_from_savannah;
 			}
 			set
 			{
-				if ((this._days_from != value))
+				if ((this._days_from_savannah != value))
 				{
-					this.Ondays_fromChanging(value);
+					this.Ondays_from_savannahChanging(value);
 					this.SendPropertyChanging();
-					this._days_from = value;
-					this.SendPropertyChanged("days_from");
-					this.Ondays_fromChanged();
+					this._days_from_savannah = value;
+					this.SendPropertyChanged("days_from_savannah");
+					this.Ondays_from_savannahChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_days_to_next_port", DbType="Int NOT NULL")]
+		public int days_to_next_port
+		{
+			get
+			{
+				return this._days_to_next_port;
+			}
+			set
+			{
+				if ((this._days_to_next_port != value))
+				{
+					this.Ondays_to_next_portChanging(value);
+					this.SendPropertyChanging();
+					this._days_to_next_port = value;
+					this.SendPropertyChanged("days_to_next_port");
+					this.Ondays_to_next_portChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[order]", Storage="_order", DbType="Int NOT NULL")]
+		public int order
+		{
+			get
+			{
+				return this._order;
+			}
+			set
+			{
+				if ((this._order != value))
+				{
+					this.OnorderChanging(value);
+					this.SendPropertyChanging();
+					this._order = value;
+					this.SendPropertyChanged("order");
+					this.OnorderChanged();
 				}
 			}
 		}
@@ -1278,292 +1660,6 @@ namespace Realm.GPA.GCS.DAL
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Realm.GPA.GCS.Services]")]
-	public partial class Realm_GPA_GCS_Service : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _name;
-		
-		private string _description;
-		
-		private int _turnaround_days;
-		
-		private int _frequency;
-		
-		private int _number_of_vessels;
-		
-		private int _avg_capacity;
-		
-		private string _image_url;
-		
-		private EntitySet<Realm_GPA_GCS_Services_Carrier> _Realm_GPA_GCS_Services_Carriers;
-		
-		private EntitySet<Realm_GPA_GCS_Services_Port> _Realm_GPA_GCS_Services_Ports;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    partial void OndescriptionChanging(string value);
-    partial void OndescriptionChanged();
-    partial void Onturnaround_daysChanging(int value);
-    partial void Onturnaround_daysChanged();
-    partial void OnfrequencyChanging(int value);
-    partial void OnfrequencyChanged();
-    partial void Onnumber_of_vesselsChanging(int value);
-    partial void Onnumber_of_vesselsChanged();
-    partial void Onavg_capacityChanging(int value);
-    partial void Onavg_capacityChanged();
-    partial void Onimage_urlChanging(string value);
-    partial void Onimage_urlChanged();
-    #endregion
-		
-		public Realm_GPA_GCS_Service()
-		{
-			this._Realm_GPA_GCS_Services_Carriers = new EntitySet<Realm_GPA_GCS_Services_Carrier>(new Action<Realm_GPA_GCS_Services_Carrier>(this.attach_Realm_GPA_GCS_Services_Carriers), new Action<Realm_GPA_GCS_Services_Carrier>(this.detach_Realm_GPA_GCS_Services_Carriers));
-			this._Realm_GPA_GCS_Services_Ports = new EntitySet<Realm_GPA_GCS_Services_Port>(new Action<Realm_GPA_GCS_Services_Port>(this.attach_Realm_GPA_GCS_Services_Ports), new Action<Realm_GPA_GCS_Services_Port>(this.detach_Realm_GPA_GCS_Services_Ports));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this.OnnameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_description", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
-		public string description
-		{
-			get
-			{
-				return this._description;
-			}
-			set
-			{
-				if ((this._description != value))
-				{
-					this.OndescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._description = value;
-					this.SendPropertyChanged("description");
-					this.OndescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_turnaround_days", DbType="Int NOT NULL")]
-		public int turnaround_days
-		{
-			get
-			{
-				return this._turnaround_days;
-			}
-			set
-			{
-				if ((this._turnaround_days != value))
-				{
-					this.Onturnaround_daysChanging(value);
-					this.SendPropertyChanging();
-					this._turnaround_days = value;
-					this.SendPropertyChanged("turnaround_days");
-					this.Onturnaround_daysChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_frequency", DbType="Int NOT NULL")]
-		public int frequency
-		{
-			get
-			{
-				return this._frequency;
-			}
-			set
-			{
-				if ((this._frequency != value))
-				{
-					this.OnfrequencyChanging(value);
-					this.SendPropertyChanging();
-					this._frequency = value;
-					this.SendPropertyChanged("frequency");
-					this.OnfrequencyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_number_of_vessels", DbType="Int NOT NULL")]
-		public int number_of_vessels
-		{
-			get
-			{
-				return this._number_of_vessels;
-			}
-			set
-			{
-				if ((this._number_of_vessels != value))
-				{
-					this.Onnumber_of_vesselsChanging(value);
-					this.SendPropertyChanging();
-					this._number_of_vessels = value;
-					this.SendPropertyChanged("number_of_vessels");
-					this.Onnumber_of_vesselsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_avg_capacity", DbType="Int NOT NULL")]
-		public int avg_capacity
-		{
-			get
-			{
-				return this._avg_capacity;
-			}
-			set
-			{
-				if ((this._avg_capacity != value))
-				{
-					this.Onavg_capacityChanging(value);
-					this.SendPropertyChanging();
-					this._avg_capacity = value;
-					this.SendPropertyChanged("avg_capacity");
-					this.Onavg_capacityChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image_url", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
-		public string image_url
-		{
-			get
-			{
-				return this._image_url;
-			}
-			set
-			{
-				if ((this._image_url != value))
-				{
-					this.Onimage_urlChanging(value);
-					this.SendPropertyChanging();
-					this._image_url = value;
-					this.SendPropertyChanged("image_url");
-					this.Onimage_urlChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Realm_GPA_GCS_Service_Realm_GPA_GCS_Services_Carrier", Storage="_Realm_GPA_GCS_Services_Carriers", ThisKey="id", OtherKey="service_id")]
-		public EntitySet<Realm_GPA_GCS_Services_Carrier> Realm_GPA_GCS_Services_Carriers
-		{
-			get
-			{
-				return this._Realm_GPA_GCS_Services_Carriers;
-			}
-			set
-			{
-				this._Realm_GPA_GCS_Services_Carriers.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Realm_GPA_GCS_Service_Realm_GPA_GCS_Services_Port", Storage="_Realm_GPA_GCS_Services_Ports", ThisKey="id", OtherKey="service_id")]
-		public EntitySet<Realm_GPA_GCS_Services_Port> Realm_GPA_GCS_Services_Ports
-		{
-			get
-			{
-				return this._Realm_GPA_GCS_Services_Ports;
-			}
-			set
-			{
-				this._Realm_GPA_GCS_Services_Ports.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Realm_GPA_GCS_Services_Carriers(Realm_GPA_GCS_Services_Carrier entity)
-		{
-			this.SendPropertyChanging();
-			entity.Realm_GPA_GCS_Service = this;
-		}
-		
-		private void detach_Realm_GPA_GCS_Services_Carriers(Realm_GPA_GCS_Services_Carrier entity)
-		{
-			this.SendPropertyChanging();
-			entity.Realm_GPA_GCS_Service = null;
-		}
-		
-		private void attach_Realm_GPA_GCS_Services_Ports(Realm_GPA_GCS_Services_Port entity)
-		{
-			this.SendPropertyChanging();
-			entity.Realm_GPA_GCS_Service = this;
-		}
-		
-		private void detach_Realm_GPA_GCS_Services_Ports(Realm_GPA_GCS_Services_Port entity)
-		{
-			this.SendPropertyChanging();
-			entity.Realm_GPA_GCS_Service = null;
 		}
 	}
 }
