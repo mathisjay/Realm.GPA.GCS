@@ -154,6 +154,27 @@
     <Compile Include="Admin\AdminEditUSCity.ascx.designer.cs">
       <DependentUpon>AdminEditUSCity.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Views\CarriersAll.ascx.cs">
+      <DependentUpon>CarriersAll.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CarriersAll.ascx.designer.cs">
+      <DependentUpon>CarriersAll.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CarrierImages.ascx.cs">
+      <DependentUpon>CarrierImages.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\CarrierImages.ascx.designer.cs">
+      <DependentUpon>CarrierImages.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ServicesAll.ascx.cs">
+      <DependentUpon>ServicesAll.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ServicesAll.ascx.designer.cs">
+      <DependentUpon>ServicesAll.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Views\ServiceDetail.ascx.cs">
       <DependentUpon>ServiceDetail.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -207,6 +228,11 @@
     <Content Include="Admin\AdminEditRegion.ascx" />
     <Content Include="Admin\AdminListUSCity.ascx" />
     <Content Include="Admin\AdminEditUSCity.ascx" />
+    <Content Include="js\ekko-lightbox.js" />
+    <Content Include="styles\ekko-lightbox.css" />
+    <Content Include="Views\CarriersAll.ascx" />
+    <Content Include="Views\CarrierImages.ascx" />
+    <Content Include="Views\ServicesAll.ascx" />
     <Content Include="Views\ServiceDetail.ascx" />
     <Content Include="Views\ServiceList.ascx" />
     <Content Include="Views\Welcome.ascx" />
@@ -275,6 +301,7 @@
     <None Include="DAL\Realm.GPA.GCS.dbml.layout">
       <DependentUpon>Realm.GPA.GCS.dbml</DependentUpon>
     </None>
+    <Content Include="_Realm.GPA.GCS.dnn" />
     <Content Include="web.config" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
@@ -282,7 +309,9 @@
     <None Include="web.Release.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
-    <Content Include="_Realm.GPA.GCS.dnn" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="carriers\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -308,7 +337,7 @@
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/DesktopModules/Realm.GPA.GCS</IISUrl>
           <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost</IISAppRootUrl>
+          <IISAppRootUrl>http://localhost/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

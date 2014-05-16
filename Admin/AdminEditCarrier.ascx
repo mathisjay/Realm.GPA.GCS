@@ -47,7 +47,7 @@
             <asp:TextBox runat="server" ID="txtImageUrl" />
             <a onclick="$find('<%= doImageURL.ClientID %>').open('ImageManager', {CssClasses: []}); return false;" class="imageManager" title="Open Image Manager">Open Image Manager</a>
             <asp:RequiredFieldValidator runat="server" ID="valImageUrl" ControlToValidate="txtImageURL" ErrorMessage="ImageURL is required" Display="none" />
-            <telerik:DialogOpener runat="server" ID="doImageURL" HandlerUrl="Telerik.Web.UI.DialogHandler.aspx" Style="display: none;" />
+            <telerik:DialogOpener runat="server" ID="doImageURL" HandlerUrl="Telerik.Web.UI.DialogHandler.aspx" style="display: none;"  />
         </div>
         <div class="dnnFormItem">
             <dnn:Label runat="server" ID="lblImagePreview" text="Image Preview" controlname="imgImageUrl" helptext="Preview of the selected image" />

@@ -1,5 +1,5 @@
 ﻿<dotnetnuke type="Package" version="5.0">
-  <packages><package name="Realm.GPA.GCS" type="Module" version="14.4.25">
+  <packages><package name="Realm.GPA.GCS" type="Module" version="14.5.14">
   <friendlyName>Realm.GPA.GCS</friendlyName>
   <description />
   <iconFile />
@@ -9,8 +9,8 @@
     <url />
     <email />
   </owner>
-  <license />
-  <releaseNotes />
+  <license>The license for this package is not currently included within the installation file, please check with the vendor for full license details.</license>
+  <releaseNotes>This package has no Release Notes</releaseNotes>
   <components>
     <component type="Module">
       <desktopModule>
@@ -32,6 +32,7 @@
                 <iconFile />
                 <helpUrl />
                 <supportsPopUps>False</supportsPopUps>
+                <viewOrder>0</viewOrder>
               </moduleControl>
               <moduleControl>
                 <controlKey>EditCarrier</controlKey>
@@ -42,6 +43,7 @@
                 <iconFile />
                 <helpUrl />
                 <supportsPopUps>False</supportsPopUps>
+                <viewOrder>0</viewOrder>
               </moduleControl>
               <moduleControl>
                 <controlKey>EditPort</controlKey>
@@ -52,6 +54,7 @@
                 <iconFile />
                 <helpUrl />
                 <supportsPopUps>False</supportsPopUps>
+                <viewOrder>0</viewOrder>
               </moduleControl>
               <moduleControl>
                 <controlKey>EditRegion</controlKey>
@@ -62,6 +65,7 @@
                 <iconFile />
                 <helpUrl />
                 <supportsPopUps>False</supportsPopUps>
+                <viewOrder>0</viewOrder>
               </moduleControl>
               <moduleControl>
                 <controlKey>EditService</controlKey>
@@ -72,6 +76,7 @@
                 <iconFile />
                 <helpUrl />
                 <supportsPopUps>False</supportsPopUps>
+                <viewOrder>0</viewOrder>
               </moduleControl>
               <moduleControl>
                 <controlKey>EditUSCity</controlKey>
@@ -82,6 +87,7 @@
                 <iconFile />
                 <helpUrl />
                 <supportsPopUps>False</supportsPopUps>
+                <viewOrder>0</viewOrder>
               </moduleControl>
               <moduleControl>
                 <controlKey>ListCarriers</controlKey>
@@ -92,6 +98,7 @@
                 <iconFile />
                 <helpUrl />
                 <supportsPopUps>False</supportsPopUps>
+                <viewOrder>0</viewOrder>
               </moduleControl>
               <moduleControl>
                 <controlKey>ListPorts</controlKey>
@@ -102,6 +109,7 @@
                 <iconFile />
                 <helpUrl />
                 <supportsPopUps>False</supportsPopUps>
+                <viewOrder>0</viewOrder>
               </moduleControl>
               <moduleControl>
                 <controlKey>ListRegions</controlKey>
@@ -112,6 +120,7 @@
                 <iconFile />
                 <helpUrl />
                 <supportsPopUps>False</supportsPopUps>
+                <viewOrder>0</viewOrder>
               </moduleControl>
               <moduleControl>
                 <controlKey>ListServices</controlKey>
@@ -122,6 +131,7 @@
                 <iconFile />
                 <helpUrl />
                 <supportsPopUps>False</supportsPopUps>
+                <viewOrder>0</viewOrder>
               </moduleControl>
               <moduleControl>
                 <controlKey>ListUSCity</controlKey>
@@ -132,6 +142,7 @@
                 <iconFile />
                 <helpUrl />
                 <supportsPopUps>False</supportsPopUps>
+                <viewOrder>0</viewOrder>
               </moduleControl>
             </moduleControls>
           </moduleDefinition>
@@ -142,6 +153,23 @@
               <moduleControl>
                 <controlKey />
                 <controlSrc>DesktopModules/Realm.GPA.GCS/ViewDispatch.ascx</controlSrc>
+                <supportsPartialRendering>False</supportsPartialRendering>
+                <controlTitle />
+                <controlType>View</controlType>
+                <iconFile />
+                <helpUrl />
+                <supportsPopUps>False</supportsPopUps>
+                <viewOrder>0</viewOrder>
+              </moduleControl>
+            </moduleControls>
+          </moduleDefinition>
+          <moduleDefinition>
+            <friendlyName>Realm.GPA.GCS.CarrierPhotos</friendlyName>
+            <defaultCacheTime>0</defaultCacheTime>
+            <moduleControls>
+              <moduleControl>
+                <controlKey />
+                <controlSrc>DesktopModules/Realm.GPA.GCS/Views/CarrierImages.ascx</controlSrc>
                 <supportsPartialRendering>False</supportsPartialRendering>
                 <controlTitle />
                 <controlType>View</controlType>
@@ -204,6 +232,26 @@
         <file>
           <path>Admin</path>
           <name>AdminEditUSCity.ascx</name>
+        </file>
+        <file>
+          <path>js</path>
+          <name>ekko-lightbox.js</name>
+        </file>
+        <file>
+          <path>styles</path>
+          <name>ekko-lightbox.css</name>
+        </file>
+        <file>
+          <path>Views</path>
+          <name>CarriersAll.ascx</name>
+        </file>
+        <file>
+          <path>Views</path>
+          <name>CarrierImages.ascx</name>
+        </file>
+        <file>
+          <path>Views</path>
+          <name>ServicesAll.ascx</name>
         </file>
         <file>
           <path>Views</path>

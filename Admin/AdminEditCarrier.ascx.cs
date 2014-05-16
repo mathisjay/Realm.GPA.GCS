@@ -96,6 +96,8 @@ namespace Realm.GPA.GCS
                 {
                     txtName.Text = item.name;
                     txtWebsiteURL.Text = item.website_url;
+                    txtImageUrl.Text = item.image_url;
+                    imgImageUrl.ImageUrl = item.image_url;
                 }
             }
             catch (Exception exc)
@@ -120,6 +122,7 @@ namespace Realm.GPA.GCS
 
                     item.name = txtName.Text;
                     item.website_url = DotNetNuke.Common.Globals.AddHTTP(txtWebsiteURL.Text);
+                    item.image_url = txtImageUrl.Text;
 
                     dc.SubmitChanges();
 

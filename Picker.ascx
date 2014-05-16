@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" Explicit="True" Inherits="Realm.GPA.GCS.Picker" CodeBehind="Picker.ascx.cs" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 
-<telerik:RadAjaxPanel runat="server" ID="rapMap">
+<telerik:radajaxpanel runat="server" id="rapMap">
     <div class="form-group">
         <span class="badge">1</span>
         <asp:Label runat="server" ID="lblWorldMap" AssociatedControlID="imWorld" Text="Select a world region" />
@@ -22,7 +22,13 @@
         <asp:DropDownList runat="server" ID="ddlDomesticCity" ClientIDMode="Static" CssClass="form-control" />
     </div>
 
-    <asp:LinkButton runat="server" ID="lbSelect" Text="Show Services" CssClass="btn btn-primary" OnClick="lbSelect_Click" />
+    <p>
+        <asp:LinkButton runat="server" ID="lbSelect" Text="Show Services" CssClass="btn btn-primary" OnClick="lbSelect_Click" />
+    </p>
+
+    <p>
+        <asp:HyperLink runat="server" ID="hypServices" Text="Show all services" /> | <asp:HyperLink runat="server" ID="hypCarriers" Text="Show all carriers" />
+     </p>
 
     <asp:HiddenField runat="server" ID="hdnRegion" ClientIDMode="Static" />
 
@@ -47,7 +53,7 @@
                 );
                 var region = $('#hdnRegion');
                 var region_name = region.val();
-                
+
                 if (region_name != '') {
                     $('#imWorld').mapster('set', true, region_name, { fillColor: '00ff00' });
                 }
@@ -63,5 +69,5 @@
         <asp:Literal runat="server" ID="litScript"></asp:Literal>
 
     </telerik:RadCodeBlock>
-</telerik:RadAjaxPanel>
+</telerik:radajaxpanel>
 

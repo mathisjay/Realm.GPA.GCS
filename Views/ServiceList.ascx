@@ -1,11 +1,17 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" Explicit="True" Inherits="Realm.GPA.GCS.ServiceList" CodeBehind="ServiceList.ascx.cs" %>
 
-<asp:HyperLink runat="server" ID="hypSwitch" Text="Switch Direction" />
-<h2>
-    <asp:Literal runat="server" ID="litStart" />
+
+<h3>
+    <i class="fa fa-globe"></i>&nbsp;<asp:Literal runat="server" ID="litStart" />
     to
-    <asp:Literal runat="server" ID="litEnd" />
-</h2>
+    <asp:Literal runat="server" ID="litEnd" />&nbsp;
+    <asp:Label runat="server" ID="lblDirection" />
+</h3>
+
+<i class="fa fa-random"></i>
+<asp:HyperLink runat="server" ID="hypSwitch" Text="Switch Direction" />
+
+<hr />
 
 <div class="row">
     <div class="col-sm-9">
@@ -39,11 +45,13 @@
     </div>
     <div class="col-sm-3">
         <asp:Literal runat="server" ID="litDomesticPath" />
-        <div class="btn btn-warning">
+
+        <span class="by-truck">Truck<br />
             <asp:Literal runat="server" ID="litByTruck" />
-        </div>
-        <div class="btn btn-info">
+        </span>
+        <span class="by-rail">Rail<br />
             <asp:Literal runat="server" ID="litByRail" />
-        </div>
+        </span>
+
     </div>
 </div>

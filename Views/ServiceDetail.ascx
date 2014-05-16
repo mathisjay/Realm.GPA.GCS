@@ -1,12 +1,22 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" Explicit="True" Inherits="Realm.GPA.GCS.ServiceDetail" CodeBehind="ServiceDetail.ascx.cs" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 
-<h2>
-    <asp:Literal runat="server" ID="litTitle" />
-</h2>
 <h3>
-    <asp:Literal runat="server" ID="litDescrpition" />
+    <i class="fa fa-globe"></i>&nbsp;<asp:Literal runat="server" ID="litTitle" />
+    &nbsp;
+    <asp:Label runat="server" ID="lblDirection" />
 </h3>
+
+<asp:Panel runat="server" ID="pnlSwitch">
+    <i class="fa fa-random"></i>
+    <asp:HyperLink runat="server" ID="hypSwitch" Text="Switch Direction" />
+</asp:Panel>
+
+<hr />
+
+<h4>
+    <asp:Literal runat="server" ID="litDescription" />
+</h4>
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#overview" data-toggle="tab">Overview</a></li>
@@ -16,29 +26,33 @@
 <div class="tab-content">
     <div class="tab-pane active" id="overview">
 
-        <asp:Image runat="server" ID="imMap" />
+        <asp:Image runat="server" ID="imMap" CssClass="img-responsive" />
 
-        <div class="row">
+        <div class="row" style="padding: 20px 0;">
             <div class="col-sm-6">
                 <asp:Panel runat="server" ID="pnlPortToPort">
-                    <div class="row">
+                    <div class="row" style="margin-bottom: 20px;">
                         <div class="col-sm-4 text-center">
-                            <h4>
+                            <strong>
                                 <asp:Literal runat="server" ID="litWorldPath" />
-                            </h4>
-                            <div class="btn btn-info">
-                                <asp:Literal runat="server" ID="litByShip" />
+                            </strong>
+                            <div>
+                                <span class="by-ship">Ship<br />
+                                    <asp:Literal runat="server" ID="litByShip" />
+                                </span>
                             </div>
                         </div>
-                        <div class="col-sm-8 text-center">
-                            <h4>
+                        <div class="col-sm-8 text-center" style="border-left: solid 1px #ccc;">
+                            <strong>
                                 <asp:Literal runat="server" ID="litDomesticPath" />
-                            </h4>
-                            <div class="btn btn-warning">
-                                <asp:Literal runat="server" ID="litByTruck" />
-                            </div>
-                            <div class="btn btn-default">
-                                <asp:Literal runat="server" ID="litByRail" />
+                            </strong>
+                            <div>
+                                <span class="by-truck">Truck<br />
+                                    <asp:Literal runat="server" ID="litByTruck" />
+                                </span>
+                                <span class="by-rail">Rail<br />
+                                    <asp:Literal runat="server" ID="litByRail" />
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -46,30 +60,49 @@
                 <asp:Literal runat="server" ID="litLongDescription" />
             </div>
             <div class="col-sm-6">
-                <h4>Service Summary</h4>
-                <p>
-                    <asp:Literal runat="server" ID="litTurnaround" />
-                    <hr />
-                    <asp:Literal runat="server" ID="litFrequency" />
-                    <hr />
-                    <asp:Literal runat="server" ID="litNumberOfVessels" />
-                    <hr />
-                    <asp:Literal runat="server" ID="litAverageCapacity" />
-                </p>
+                <h5><i class="fa fa-info-circle"></i>&nbsp;Service Summary</h5>
+                <ul class="service-summary">
+                    <li>
+                        <strong>
+                            <asp:Literal runat="server" ID="litTurnaround" /></strong> day turnaround
+                    </li>
+                    <li>
+                        <strong>
+                            <asp:Literal runat="server" ID="litFrequency" /></strong> day service
+                    </li>
+                    <li>
+                        <strong>
+                            <asp:Literal runat="server" ID="litNumberOfVessels" /></strong> Vessels
+                    </li>
+                    <li>
+                        <strong>
+                            <asp:Literal runat="server" ID="litAverageCapacity" /></strong> avg. TEU capacity per vessel
+                    </li>
+                </ul>
+
+                <hr />
 
                 <asp:Repeater runat="server" ID="rptCarriers">
                     <HeaderTemplate>
-                        <h4>Carriers</h4>
+                        <h5><i class="fa fa-anchor"></i>&nbsp;Carriers</h5>
+                        <ul class="carriers">
                     </HeaderTemplate>
                     <ItemTemplate>
-                        <%# Eval("name") %>
+                        <li>
+                            <strong>
+                                <asp:HyperLink runat="server" ID="hypCarrier" NavigateUrl='<%# Eval("website_url") %>' Text='<%# Eval("name") %>' Target="_blank" />
+                            </strong>
+                        </li>
                     </ItemTemplate>
-                    <SeparatorTemplate>
-                        <hr />
-                    </SeparatorTemplate>
+                    <FooterTemplate>
+                        </ul>
+                    </FooterTemplate>
                 </asp:Repeater>
 
-                <h4>Contacts</h4>
+                <hr />
+
+                <h5><i class="fa fa-users"></i>&nbsp;Contacts</h5>
+
                 <strong>GPA Carrier Sales</strong>
                 <p>
                     <strong>Savannah</strong><br />
@@ -89,12 +122,12 @@
         </div>
     </div>
     <div class="tab-pane" id="ports">
-        <asp:GridView ID="gvListServicePorts" runat="server" Width="100%" AutoGenerateColumns="false" GridLines="None">
+        <asp:GridView ID="gvListServicePorts" runat="server" Width="100%" AutoGenerateColumns="false" GridLines="None" CssClass="service-ports">
             <Columns>
-                <asp:BoundField DataField="Realm_GPA_GCS_Port.name" />
-                <asp:BoundField DataField="days_to_next_port" HeaderText="Days To Next Port" />
-                <asp:BoundField DataField="days_to_savannah" HeaderText="Days To Savannah" />
-                <asp:BoundField DataField="days_from_savannah" HeaderText="Days From Savannah" />
+                <asp:BoundField DataField="name" />
+                <asp:BoundField DataField="days_to_next_port" HeaderText="Days To Next Port" HeaderStyle-CssClass="days-to-next-port" ItemStyle-CssClass="days-to-next-port" />
+                <asp:BoundField DataField="days_to_savannah" HeaderText="Days To Savannah" HeaderStyle-CssClass="days-to" ItemStyle-CssClass="days-to" />
+                <asp:BoundField DataField="days_from_savannah" HeaderText="Days From Savannah" HeaderStyle-CssClass="days-from" ItemStyle-CssClass="days-from" />
             </Columns>
         </asp:GridView>
     </div>
