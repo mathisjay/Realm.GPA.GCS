@@ -1,5 +1,5 @@
 ﻿<dotnetnuke type="Package" version="5.0">
-  <packages><package name="Realm.GPA.GCS" type="Module" version="14.5.14">
+  <packages><package name="Realm.GPA.GCS" type="Module" version="14.6.18">
   <friendlyName>Realm.GPA.GCS</friendlyName>
   <description />
   <iconFile />
@@ -44,6 +44,16 @@
                 <helpUrl />
                 <supportsPopUps>False</supportsPopUps>
                 <viewOrder>0</viewOrder>
+              </moduleControl>
+              <moduleControl>
+                <controlKey>EditCarrierImage</controlKey>
+                <controlSrc>DesktopModules/Realm.GPA.GCS/Admin/AdminEditCarrierImage.ascx</controlSrc>
+                <supportsPartialRendering>False</supportsPartialRendering>
+                <controlTitle />
+                <controlType>Edit</controlType>
+                <iconFile />
+                <helpUrl />
+                <supportsPopUps>False</supportsPopUps>
               </moduleControl>
               <moduleControl>
                 <controlKey>EditPort</controlKey>
@@ -232,6 +242,10 @@
         <file>
           <path>Admin</path>
           <name>AdminEditUSCity.ascx</name>
+        </file>
+        <file>
+          <path>Admin</path>
+          <name>AdminEditCarrierImage.ascx</name>
         </file>
         <file>
           <path>js</path>

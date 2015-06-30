@@ -5,18 +5,6 @@ using DotNetNuke.Entities.Modules;
 using DotNetNuke.Services.Exceptions;
 using Realm.GPA.GCS.DAL;
 using Telerik.Web.UI;
-using Telerik.Web.UI.Editor.DialogControls;
-using System;
-using System.Linq;
-using System.Web.UI;
-using DotNetNuke.Entities.Modules;
-using DotNetNuke.Services.Exceptions;
-using Realm.GPA.GCS.DAL;
-using Telerik.Web.UI;
-using System.Collections;
-using System.Collections.Generic;
-using System.Web.UI.WebControls;
-using Telerik.Web.UI.Editor.DialogControls;
 
 
 namespace Realm.GPA.GCS
@@ -33,10 +21,18 @@ namespace Realm.GPA.GCS
                 {
                     return Convert.ToInt32(Request.QueryString["id"]);
                 }
+                else if (ViewState["carrier_id"] != null && string.IsNullOrEmpty(ViewState["carrier_id"].ToString()))
+                {
+                    return Convert.ToInt32(ViewState["carrier_id"].ToString());
+                }
                 else
                 {
                     return null;
                 }
+            }
+            set
+            {
+                ViewState["carrier_id"] = value;
             }
         }
 
@@ -45,7 +41,6 @@ namespace Realm.GPA.GCS
             try
             {
                 hypReturn.NavigateUrl = EditUrl("ListCarriers");
-                SetUpImageManagers();
 
                 if (!Page.IsPostBack)
                 {
@@ -58,35 +53,6 @@ namespace Realm.GPA.GCS
             }
         }
 
-        private void SetUpImageManagers()
-        {
-
-            FileManagerDialogParameters imageManagerParameters = new FileManagerDialogParameters();
-            imageManagerParameters.ViewPaths = new string[] { "/DesktopModules/Realm.GPA.GCS/carriers" };
-            imageManagerParameters.UploadPaths = new string[] { "/DesktopModules/Realm.GPA.GCS/carriers" };
-            imageManagerParameters.DeletePaths = new string[] { "/DesktopModules/Realm.GPA.GCS/carriers" };
-            imageManagerParameters.MaxUploadFileSize = 5000000;
-
-            DialogDefinition imageManager = new DialogDefinition(typeof(ImageManagerDialog), imageManagerParameters);
-            imageManager.ClientCallbackFunction = "ImageManagerFunction";
-            imageManager.Width = Unit.Pixel(694);
-            imageManager.Height = Unit.Pixel(440);
-
-            doImageURL.DialogDefinitions.Add("ImageManager", imageManager);
-
-            FileManagerDialogParameters imageEditorParameters = new FileManagerDialogParameters();
-            imageEditorParameters.ViewPaths = new string[] { "/DesktopModules/Realm.GPA.GCS/carriers" };
-            imageEditorParameters.UploadPaths = new string[] { "/DesktopModules/Realm.GPA.GCS/carriers" };
-            imageEditorParameters.DeletePaths = new string[] { "/DesktopModules/Realm.GPA.GCS/carriers" };
-            imageEditorParameters.MaxUploadFileSize = 5000000;
-
-            DialogDefinition imageEditor = new DialogDefinition(typeof(ImageEditorDialog), imageEditorParameters);
-            imageEditor.Width = Unit.Pixel(832);
-            imageEditor.Height = Unit.Pixel(520);
-
-            doImageURL.DialogDefinitions.Add("ImageEditor", imageEditor);
-
-        }
         protected void LoadData()
         {
             try
@@ -96,8 +62,6 @@ namespace Realm.GPA.GCS
                 {
                     txtName.Text = item.name;
                     txtWebsiteURL.Text = item.website_url;
-                    txtImageUrl.Text = item.image_url;
-                    imgImageUrl.ImageUrl = item.image_url;
                 }
             }
             catch (Exception exc)
@@ -112,22 +76,32 @@ namespace Realm.GPA.GCS
             {
                 if (Page.IsValid)
                 {
-                    Realm_GPA_GCS_Carrier item = dc.Realm_GPA_GCS_Carriers.Where(i => i.id == _id.GetValueOrDefault()).FirstOrDefault();
-
-                    if (item == null)
-                    {
-                        item = new Realm_GPA_GCS_Carrier();
-                        dc.Realm_GPA_GCS_Carriers.InsertOnSubmit(item);
-                    }
-
-                    item.name = txtName.Text;
-                    item.website_url = DotNetNuke.Common.Globals.AddHTTP(txtWebsiteURL.Text);
-                    item.image_url = txtImageUrl.Text;
-
-                    dc.SubmitChanges();
-
+                    Save();
                     Response.Redirect(EditUrl("ListCarriers"), true);
                 }
+            }
+            catch (Exception exc)
+            {
+                Exceptions.ProcessModuleLoadException(this, exc);
+            }
+        }
+
+        protected void Save()
+        {
+            try
+            {
+                Realm_GPA_GCS_Carrier item = dc.Realm_GPA_GCS_Carriers.Where(i => i.id == _id.GetValueOrDefault()).FirstOrDefault();
+
+                if (item == null)
+                {
+                    item = new Realm_GPA_GCS_Carrier();
+                    dc.Realm_GPA_GCS_Carriers.InsertOnSubmit(item);
+                }
+
+                item.name = txtName.Text;
+                item.website_url = DotNetNuke.Common.Globals.AddHTTP(txtWebsiteURL.Text);
+
+                dc.SubmitChanges();
             }
             catch (Exception exc)
             {
@@ -152,6 +126,49 @@ namespace Realm.GPA.GCS
             catch (Exception exc)
             {
                 Exceptions.ProcessModuleLoadException(this, exc);
+            }
+        }
+        protected void gvList_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)
+        {
+            try
+            {
+                IQueryable<Realm_GPA_GCS_Carrier_Image> query = dc.Realm_GPA_GCS_Carrier_Images.Where(i => i.carrier_id == _id.GetValueOrDefault());
+                gvList.DataSource = query;
+            }
+            catch (Exception exc)
+            {
+                Exceptions.ProcessModuleLoadException(this, exc);
+            }
+        }
+
+        protected void gvList_ItemCommand(object sender, GridCommandEventArgs e)
+        {
+            if (e.CommandName == "InitInsert")
+            {
+                Page.Validate();
+                if (Page.IsValid)
+                {
+                    Save();
+                    Response.Redirect(EditUrl("carrier_id", _id.GetValueOrDefault().ToString(), "EditCarrierImage"), true);
+                }
+            }
+        }
+
+        protected void gvList_EditCommand(object sender, Telerik.Web.UI.GridCommandEventArgs e)
+        {
+            e.Canceled = true;
+            int id = (int)((GridDataItem)e.Item).GetDataKeyValue("id");
+            Response.Redirect(EditUrl("id", id.ToString(), "EditCarrierImage"), true);
+        }
+
+        protected void gvList_DeleteCommand(object sender, GridCommandEventArgs e)
+        {
+            int id = (int)((GridDataItem)e.Item).GetDataKeyValue("id");
+            Realm_GPA_GCS_Carrier_Image item = dc.Realm_GPA_GCS_Carrier_Images.Where(i => i.id == id).FirstOrDefault();
+            if (item != null)
+            {
+                dc.Realm_GPA_GCS_Carrier_Images.DeleteOnSubmit(item);
+                dc.SubmitChanges();
             }
         }
 

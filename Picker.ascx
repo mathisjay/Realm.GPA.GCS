@@ -13,17 +13,18 @@
     <div class="form-group">
         <span class="badge">2</span>
         <asp:Label runat="server" ID="lblForeignPort" AssociatedControlID="ddlForeignPort" Text="Select a port" />
-        <asp:DropDownList runat="server" ID="ddlForeignPort" ClientIDMode="Static" CssClass="form-control" Enabled="false" />
+        <asp:DropDownList runat="server" ID="ddlForeignPort" ClientIDMode="Static" CssClass="form-control" Enabled="false" AutoPostBack="true" OnSelectedIndexChanged="ddlForeignPort_SelectedIndexChanged" />
     </div>
 
     <div class="form-group">
         <span class="badge">3</span>
         <asp:Label runat="server" ID="lblDomesticcCity" AssociatedControlID="ddlDomesticCity" Text="Select a U.S. city" />
-        <asp:DropDownList runat="server" ID="ddlDomesticCity" ClientIDMode="Static" CssClass="form-control" />
+        <asp:DropDownList runat="server" ID="ddlDomesticCity" ClientIDMode="Static" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlDomesticCity_SelectedIndexChanged" />
     </div>
 
     <p>
-        <asp:LinkButton runat="server" ID="lbSelect" Text="Show Services" CssClass="btn btn-primary" OnClick="lbSelect_Click" />
+        <asp:LinkButton runat="server" ID="lbSelect" Text="Show Services" CssClass="btn btn-primary" OnClick="lbSelect_Click" Enabled="false" />
+        <asp:LinkButton runat="server" ID="lbClear" Text="Start Over" CssClass="btn btn-default" OnClick="lbClear_Click" Visible="false" />
     </p>
 
     <p>

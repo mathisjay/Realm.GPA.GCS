@@ -1,10 +1,8 @@
-﻿*
-{
+﻿* {
     outline: none !important;
 }
 
-.imageManager, .documentManager
-{
+.imageManager, .documentManager {
     display: inline-block;
     text-indent: -9999px;
     width: 24px;
@@ -12,24 +10,20 @@
     border: 1px solid #ccc;
 }
 
-    .imageManager:hover, .documentManager:hover
-    {
+    .imageManager:hover, .documentManager:hover {
         cursor: pointer;
         background-color: #ccc;
     }
 
-.imageManager
-{
+.imageManager {
     background: url(img/image.png) 50% 50% no-repeat;
 }
 
-.documentManager
-{
+.documentManager {
     background: url(img/document.png) 50% 50% no-repeat;
 }
 
-.by-ship, .by-truck, .by-rail
-{
+.by-ship, .by-truck, .by-rail {
     display: inline-block;
     border-radius: 50%;
     width: 75px;
@@ -40,73 +34,89 @@
     margin: 10px;
 }
 
-.by-ship
-{
+.by-ship {
     background-color: blue;
 }
 
-.by-truck
-{
+.by-truck {
     background-color: orange;
 }
 
-.by-rail
-{
+.by-rail {
     background-color: gray;
 }
 
-.service-summary, .carriers
-{
+.service-summary, .carriers {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-    .service-summary li, .carriers li
-    {
+    .service-summary li, .carriers li {
         margin: 0;
         padding: 10px 0;
         border-top: solid 1px #ccc;
     }
 
 
-table.service-ports
-{
+table.service-ports {
     margin: 10px 0 0 0;
 }
 
     table.service-ports .days-to-next-port,
     table.service-ports .days-to,
-    table.service-ports .days-from
-    {
+    table.service-ports .days-from {
         text-align: center;
     }
 
-    table.service-ports tr
-    {
-        border-bottom: solid 2px #ccc;        
+    table.service-ports tr {
+        border-bottom: solid 2px #ccc;
     }
 
-    table.service-ports th
-    {
+    table.service-ports th {
         padding: 5px;
         font-size: 16px;
         color: #fff;
     }
 
-        table.service-ports th.days-to-next-port
-        {
+        table.service-ports th.days-to-next-port {
             background-color: #357EBD;
         }
 
         table.service-ports th.days-to,
-        table.service-ports th.days-from
-        {
+        table.service-ports th.days-from {
             background-color: gray;
         }
 
-    table.service-ports td
-    {
+    table.service-ports td {
         padding: 5px;
         font-size: 18px;
     }
+
+
+@media screen {
+    #printSection {
+        display: none;
+    }
+
+    .printable {
+        display: none;
+    }
+}
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    #printSection, #printSection * {
+        visibility: visible;
+    }
+
+    #printSection {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+}

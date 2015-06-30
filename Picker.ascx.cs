@@ -1,5 +1,4 @@
 using DotNetNuke.Entities.Modules;
-using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Web.Client.ClientResourceManagement;
 using System;
@@ -7,11 +6,10 @@ using System.Web.UI.WebControls;
 using Realm.GPA.GCS.DAL;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Realm.GPA.GCS
 {
-    public partial class Picker : PortalModuleBase, DotNetNuke.Entities.Modules.IActionable
+    public partial class Picker : PortalModuleBase
     {
 
         public Nullable<int> world_port
@@ -28,33 +26,6 @@ namespace Realm.GPA.GCS
                 }
             }
         }
-
-        //public string region_name
-        //{
-        //    get
-        //    {
-        //        if (ViewState["region_name"] != null)
-        //        {
-        //            string _region_name = ViewState["region_name"].ToString();
-        //            return _region_name;
-        //        }
-        //        else
-        //        {
-        //            if (world_port.HasValue)
-        //            {
-        //                return dc.Realm_GPA_GCS_Ports.Where(i => i.id == world_port.GetValueOrDefault()).Select(i => i.Realm_GPA_GCS_Region.name).FirstOrDefault();
-        //            }
-        //            else
-        //            {
-        //                return string.Empty;
-        //            }
-        //        }
-        //    }
-        //    set
-        //    {
-        //        ViewState["region_name"] = value;
-        //    }
-        //}
 
         public string us_city
         {
@@ -87,23 +58,6 @@ namespace Realm.GPA.GCS
             set
             {
                 ViewState["_selectedRegion"] = value;
-            }
-        }
-
-        public DotNetNuke.Entities.Modules.Actions.ModuleActionCollection ModuleActions
-        {
-            get
-            {
-                ModuleActionCollection Actions = new ModuleActionCollection();
-                if (IsEditable)
-                {
-                    Actions.Add(GetNextActionID(), "Edit Regions", ModuleActionType.AddContent, "", "", EditUrl("ListRegions"), false, DotNetNuke.Security.SecurityAccessLevel.Edit, true, false);
-                    Actions.Add(GetNextActionID(), "Edit Ports", ModuleActionType.AddContent, "", "", EditUrl("ListPorts"), false, DotNetNuke.Security.SecurityAccessLevel.Edit, true, false);
-                    Actions.Add(GetNextActionID(), "Edit US Cities", ModuleActionType.AddContent, "", "", EditUrl("ListUSCities"), false, DotNetNuke.Security.SecurityAccessLevel.Edit, true, false);
-                    Actions.Add(GetNextActionID(), "Edit Services", ModuleActionType.AddContent, "", "", EditUrl("ListServices"), false, DotNetNuke.Security.SecurityAccessLevel.Edit, true, false);
-                    Actions.Add(GetNextActionID(), "Edit Carriers", ModuleActionType.AddContent, "", "", EditUrl("ListCarriers"), false, DotNetNuke.Security.SecurityAccessLevel.Edit, true, false);
-                }
-                return Actions;
             }
         }
 
@@ -152,17 +106,20 @@ namespace Realm.GPA.GCS
 
                 foreach (Realm_GPA_GCS_Region item in list)
                 {
-                    CircleHotSpot hs = new CircleHotSpot();
-                    hs.X = item.x;
-                    hs.Y = item.y;
+                    if (!item.domestic)
+                    {
+                        CircleHotSpot hs = new CircleHotSpot();
+                        hs.X = item.x;
+                        hs.Y = item.y;
 
-                    hs.Radius = item.radius;
-                    hs.AlternateText = item.name;
-                    hs.PostBackValue = item.id.ToString();
+                        hs.Radius = item.radius;
+                        hs.AlternateText = item.name;
+                        hs.PostBackValue = item.id.ToString();
 
-                    hs.HotSpotMode = HotSpotMode.PostBack;
+                        hs.HotSpotMode = HotSpotMode.PostBack;
 
-                    imWorld.HotSpots.Add(hs);
+                        imWorld.HotSpots.Add(hs);
+                    }
                 }
 
             }
@@ -171,7 +128,6 @@ namespace Realm.GPA.GCS
                 Exceptions.ProcessModuleLoadException(this, exc);
             }
         }
-
 
         protected void imWorld_Click(object sender, System.Web.UI.WebControls.ImageMapEventArgs e)
         {
@@ -195,12 +151,12 @@ namespace Realm.GPA.GCS
             {
                 if (region != null)
                 {
-                    ddlForeignPort.DataSource = region.Realm_GPA_GCS_Ports.OrderBy(i => i.name);
+                    ddlForeignPort.DataSource = region.Realm_GPA_GCS_Ports.Select(i => new { name = i.country + ", " + i.name, id = i.id }).OrderBy(i => i.name);
                     ddlForeignPort.DataTextField = "name";
                     ddlForeignPort.DataValueField = "id";
                     ddlForeignPort.DataBind();
 
-                    ddlForeignPort.Items.Insert(0, new ListItem("Select a port within " + region.name, string.Empty));
+                    ddlForeignPort.Items.Insert(0, new ListItem("Select a port within the " + region.name + " region", string.Empty));
                     ddlForeignPort.Enabled = true;
                 }
                 else
@@ -210,6 +166,7 @@ namespace Realm.GPA.GCS
                     ddlForeignPort.Items.Add(new ListItem("Select a world region", string.Empty));
                     ddlForeignPort.Enabled = false;
                 }
+                CheckReady();
             }
             catch (Exception exc)
             {
@@ -274,9 +231,29 @@ namespace Realm.GPA.GCS
                     }
                 }
             }
+
+            CheckReady();
         }
 
+        protected void lbClear_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(DotNetNuke.Common.Globals.NavigateURL(TabId));
+        }
 
+        protected void ddlForeignPort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CheckReady();
+        }
 
+        protected void ddlDomesticCity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CheckReady();
+        }
+
+        private void CheckReady()
+        {
+            lbSelect.Enabled = !string.IsNullOrEmpty(ddlForeignPort.SelectedValue) && !string.IsNullOrEmpty(ddlDomesticCity.SelectedValue);
+            lbClear.Visible = lbSelect.Enabled;
+        }
     }
 }

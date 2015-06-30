@@ -235,7 +235,7 @@ namespace Realm.GPA.GCS {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.DialogOpener doImageURL;
+        protected global::Telerik.Web.UI.RadDialogOpener doImageURL;
         
         /// <summary>
         /// lblImagePreview control.

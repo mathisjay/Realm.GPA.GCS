@@ -14,9 +14,9 @@
     <fieldset>
 
         <div class="dnnFormItem">
-            <dnn:label id="lblName" runat="server" text="Name:" controlname="txtName" helptext="Enter the name of the port." CssClass="dnnRequired" />
+            <dnn:label id="lblName" runat="server" text="Port Name:" controlname="txtName" helptext="Enter the name of the port." CssClass="dnnRequired" />
             <asp:TextBox runat="server" ID="txtName" CssClass="dnnRequired" />
-            <asp:RequiredFieldValidator runat="server" ID="valName" ControlToValidate="txtName" Display="None" ErrorMessage="Name is required" ValidationGroup="edit_item" />
+            <asp:RequiredFieldValidator runat="server" ID="valName" ControlToValidate="txtName" Display="None" ErrorMessage="Port Name is required" ValidationGroup="edit_item" />
             <asp:CustomValidator runat="server" ID="valNameDuplicate" ControlToValidate="txtName" Display="None" ErrorMessage="There is already a port with that name" ValidationGroup="edit_item" OnServerValidate="valNameDuplicate_ServerValidate" />
         </div>
 
@@ -24,6 +24,12 @@
             <dnn:label id="lblRegion" runat="server" text="Region:" controlname="ddlRegion" helptext="Select the world region for this port." CssClass="dnnRequired" />
             <asp:DropDownList runat="server" ID="ddlRegion" CssClass="dnnRequired" />
             <asp:RequiredFieldValidator runat="server" ID="valRegion" ControlToValidate="ddlRegion" Display="None" ErrorMessage="Region is required" ValidationGroup="edit_item" />
+        </div>
+
+        <div class="dnnFormItem">
+            <dnn:label id="lblCountry" runat="server" text="Country:" controlname="txtCountry" helptext="Enter the name of the country." cssclass="dnnRequired" />
+            <asp:TextBox runat="server" ID="txtCountry" CssClass="dnnRequired" />
+            <asp:RequiredFieldValidator runat="server" ID="valCountry" ControlToValidate="txtCountry" Display="None" ErrorMessage="Country is required" ValidationGroup="edit_item" />            
         </div>
 
     </fieldset>

@@ -61,6 +61,8 @@ namespace Realm.GPA.GCS
                         ddlRegion.ClearSelection();
                         liRegion.Selected = true;
                     }
+
+                    txtCountry.Text = item.country;
                 }
             }
             catch (Exception exc)
@@ -88,6 +90,7 @@ namespace Realm.GPA.GCS
                     {
                         item.region_id = int.Parse(ddlRegion.SelectedValue);
                     }
+                    item.country = txtCountry.Text;
 
                     dc.SubmitChanges();
 

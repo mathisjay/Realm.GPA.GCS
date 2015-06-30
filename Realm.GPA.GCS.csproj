@@ -76,10 +76,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Telerik.Web.Design.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Web.UI">
+    <Reference Include="Telerik.Web.UI, Version=2011.3.1115.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Telerik.Web.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Web.UI.Skins">
+    <Reference Include="Telerik.Web.UI.Skins, Version=2011.3.1115.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Telerik.Web.UI.Skins.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -90,6 +92,13 @@
     </Compile>
     <Compile Include="Admin\AdminEditCarrier.ascx.designer.cs">
       <DependentUpon>AdminEditCarrier.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminEditContacts.ascx.cs">
+      <DependentUpon>AdminEditContacts.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminEditContacts.ascx.designer.cs">
+      <DependentUpon>AdminEditContacts.ascx</DependentUpon>
     </Compile>
     <Compile Include="Admin\AdminEditPort.ascx.cs">
       <DependentUpon>AdminEditPort.ascx</DependentUpon>
@@ -153,6 +162,13 @@
     </Compile>
     <Compile Include="Admin\AdminEditUSCity.ascx.designer.cs">
       <DependentUpon>AdminEditUSCity.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminEditCarrierImage.ascx.cs">
+      <DependentUpon>AdminEditCarrierImage.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdminEditCarrierImage.ascx.designer.cs">
+      <DependentUpon>AdminEditCarrierImage.ascx</DependentUpon>
     </Compile>
     <Compile Include="Views\CarriersAll.ascx.cs">
       <DependentUpon>CarriersAll.ascx</DependentUpon>
@@ -219,6 +235,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\AdminEditCarrier.ascx" />
+    <Content Include="Admin\AdminEditContacts.ascx" />
     <Content Include="Admin\AdminEditPort.ascx" />
     <Content Include="Admin\AdminEditService.ascx" />
     <Content Include="Admin\AdminListCarriers.ascx" />
@@ -228,7 +245,12 @@
     <Content Include="Admin\AdminEditRegion.ascx" />
     <Content Include="Admin\AdminListUSCity.ascx" />
     <Content Include="Admin\AdminEditUSCity.ascx" />
+    <Content Include="Admin\AdminEditCarrierImage.ascx" />
+    <Content Include="DAL\15.06.30.SqlDataProvider.sql" />
+    <Content Include="DAL\14.05.23.SqlDataProvider.sql" />
     <Content Include="js\ekko-lightbox.js" />
+    <Content Include="maps\FullMap.jpg" />
+    <Content Include="maps\FullMap.png" />
     <Content Include="styles\ekko-lightbox.css" />
     <Content Include="Views\CarriersAll.ascx" />
     <Content Include="Views\CarrierImages.ascx" />
@@ -302,13 +324,6 @@
       <DependentUpon>Realm.GPA.GCS.dbml</DependentUpon>
     </None>
     <Content Include="_Realm.GPA.GCS.dnn" />
-    <Content Include="web.config" />
-    <None Include="web.Debug.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
-    <None Include="web.Release.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="carriers\" />

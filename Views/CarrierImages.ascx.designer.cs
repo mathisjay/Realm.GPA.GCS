@@ -10,15 +10,15 @@
 namespace Realm.GPA.GCS {
     
     
-    public partial class Welcome {
+    public partial class CarrierImages {
         
         /// <summary>
-        /// Picker control.
+        /// rptCarriers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Realm.GPA.GCS.Picker Picker;
+        protected global::System.Web.UI.WebControls.Repeater rptCarriers;
     }
 }
